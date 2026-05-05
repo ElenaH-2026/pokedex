@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elenas Pokedex</title>
+    <link rel="shortcut icon" href="./assets/icons/pokeball-green.svg" type="image/x-icon">
+
+    <script src="./scripts/templates.js"></script>
+    <script src="./script.js"></script>
+
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./styles/standard.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/assets.css">
+</head>
+<body>
+    <header class="wrapper">
+            <div>
+                <img src="./assets/icons/pokeball-green.svg" alt="Poké Ball">
+                <span>Elenas Pokedex</span>
+            </div>
+            <div>
+                <label for="#Search">Search Pokémon:</label>
+                <input id="#Search" type="text" name="search" minlength="3" placeholder="Enter at least 3 letters">
+                <button type="submit" class="btn-search">
+                    <img src="./assets/icons/search.svg" 
+                        alt="search">
+                </button>
+            </div>
+    </header>
+    <main id="#PageStart" class="wrapper">
+        <h1>Elenas Pokedex</h1>
+        <ul class="container-pokemon-cards">
+            <li class="pokemon-card">
+                <img role="button"
+                    src="./assets/icons/pokeball-green.svg" 
+                    alt="">
+                <h2>name</h2>
+                <div>
+                    <span>type 1</span>
+                    <span>type 2</span>
+                </div>
+            </li>
+            <li class="pokemon-card">
+                <img role="button"
+                    src="./assets/icons/pokeball-green.svg" 
+                    alt="">
+                <h2>name</h2>
+                <div>
+                    <span>type 1</span>
+                    <span>type 2</span>
+                </div>
+            </li>
+            <li class="pokemon-card">
+                <img role="button"
+                    src="./assets/icons/pokeball-green.svg" 
+                    alt="">
+                <h2>name</h2>
+                <div>
+                    <span>type 1</span>
+                    <span>type 2</span>
+                </div>
+            </li>
+            <li class="pokemon-card">
+                <img role="button"
+                    src="./assets/icons/pokeball-green.svg" 
+                    alt="">
+                <h2>name</h2>
+                <div>
+                    <span class="type-color1">type 1</span>
+                    <span class="type-color2">type 2</span>
+                </div>
+            </li>
+        </ul>
+        <button class="btn-load-more">Load more Pokémon</button>
+    </main>
+    <footer class="wrapper">
+        <a href="##PageStart">
+            <img src="./assets/icons/pokeball-green.svg" 
+                alt="Poké Ball">
+        </a>
+    </footer>
+    
+</body>
+</html>

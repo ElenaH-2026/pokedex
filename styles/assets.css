@@ -1,0 +1,50 @@
+input {
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-light);
+    border-radius: var(--border-radius-small);
+    padding: 8px;
+}
+
+button {
+    background-color: var(--color-light);
+    border: none;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+}
+
+.btn-search {
+    padding: 0 8px;
+}
+
+.btn-load-more {
+    align-self: center;
+    color: var(--color-dark);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 16px 0;
+    padding: 8px 16px;
+    width: fit-content;
+}
+
+/* focus and hover */
+
+:focus-visible {
+    outline: none;
+}
+
+a:hover,
+a:focus-visible,
+button:hover, 
+button:focus-visible {
+    filter: drop-shadow(var(--shadow)); 
+    text-shadow: var(--shadow);
+}
+
+a:active,
+button:active {
+
+    color: var(--color-dark);
+    filter: drop-shadow(var(--shadow-big)); 
+    
+}
+
