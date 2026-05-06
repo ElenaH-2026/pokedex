@@ -35,16 +35,14 @@ button {
 a:hover,
 a:focus-visible,
 button:hover, 
-button:focus-visible {
+button:focus-visible,
+.pokemon-card:hover,
+.pokemon-card:focus-visible {
     filter: drop-shadow(var(--shadow)); 
-    text-shadow: var(--shadow);
 }
 
 a:active,
-button:active {
-
-    color: var(--color-dark);
+button:active,
+.pokemon-card:active {
     filter: drop-shadow(var(--shadow-big)); 
-    
 }
-

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/assets.css">
 </head>
-<body>
+<body onload="init()">
     <header class="wrapper">
             <div>
                 <img src="./assets/icons/pokeball-green.svg" alt="Poké Ball">
@@ -30,52 +30,14 @@
             </div>
     </header>
     <main id="#PageStart" class="wrapper">
-        <h1>Elenas Pokedex Test</h1>
-        <ul class="container-pokemon-cards">
-            <li class="pokemon-card">
-                <img role="button"
-                    style="background: linear-gradient(to right top, var(--fairy) 0 40%, var(--fairy) 60% 100%)"
-                    src="./assets/icons/pokeball-green.svg" 
-                    alt="">
-                <h2>name</h2>
-                <div>
-                    <span style="background-color: var(--fairy)">type 1</span>
-                </div>
-            </li>
-            <li class="pokemon-card">
-                <img role="button"
-                    style="background: linear-gradient(to right top, var(--normal) 0 40%, var(--fire) 60% 100%)"
-                    src="./assets/icons/pokeball-green.svg" 
-                    alt="">
-                <h2>name</h2>
-                <div>
-                    <span style="background-color: var(--normal)">type 1</span>
-                    <span style="background-color: var(--fire)">type 2</span>
-                </div>
-            </li>
-            <li class="pokemon-card">
-                <img role="button"
-                    style="background: linear-gradient(to right top, var(--ice) 0 40%, var(--ice) 60% 100%)"
-                    src="./assets/icons/pokeball-green.svg" 
-                    alt="">
-                <h2>name</h2>
-                <div>
-                    <span style="background-color: var(--ice)">type 1</span>
-                </div>
-            </li>
-            <li class="pokemon-card">
-                <img role="button"
-                    style="background: linear-gradient(to right top, var(--grass) 0 40%, var(--poison) 60% 100%)"
-                    src="./assets/icons/pokeball-green.svg" 
-                    alt="">
-                <h2>name</h2>
-                <div>
-                    <span style="background-color: var(--grass)">type 1</span>
-                    <span style="background-color: var(--poison)">type 2</span>
-                </div>
-            </li>
+        <h1>Elenas Pokedex</h1>
+        <ul id="#PokemonList"
+            class="container-pokemon-cards">
         </ul>
-        <button class="btn-load-more">Load more Pokémon</button>
+        <button onclick="loadMorePokemon()"
+            class="btn-load-more">
+            Load more Pokémon
+        </button>
     </main>
     <footer class="wrapper">
         <a href="##PageStart">
