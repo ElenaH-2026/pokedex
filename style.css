@@ -63,6 +63,7 @@ header {
     right: 0;
     justify-content: space-between;
     height: 60px;
+    z-index: 1;
 }
 
 header > div {
@@ -116,4 +117,10 @@ main {
 .pokemon-card > div > span {
     border-radius: var(--border-radius-small);
     padding: 2px 16px 4px;
+}
+
+@media screen and (max-width: 768px) {
+    header > div > label {
+        display: none;
+    }
 }
