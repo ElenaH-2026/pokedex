@@ -49,6 +49,7 @@ header, footer {
 
 footer {
     justify-content: center;
+    margin-top: 24px;
 }
 
 footer > a {
@@ -79,10 +80,10 @@ footer > a > img {
 /* main */
 
 main {
-    
     display: flex;
     flex: 1;
     flex-direction: column;
+    align-items: center;
 }
 
 .container-pokemon-cards {

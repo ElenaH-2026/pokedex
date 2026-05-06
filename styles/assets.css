@@ -17,11 +17,10 @@ button {
 }
 
 .btn-load-more {
-    align-self: center;
     color: var(--color-dark);
     font-size: 16px;
     font-weight: 500;
-    margin: 16px 0;
+    margin-top: 24px;
     padding: 8px 16px;
     width: fit-content;
 }

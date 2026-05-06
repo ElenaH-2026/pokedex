@@ -15,3 +15,11 @@ function templatePokemonTypes(type) {
     return `
         <span style="background-color: var(--${type})">${type}</span>`
 }
+
+function templateLoadMoreButton() {
+    return `
+        <button onclick="loadMorePokemon()"
+            class="btn-load-more">
+            Load more Pokémon
+        </button>`
+}

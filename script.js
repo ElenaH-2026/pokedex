@@ -1,16 +1,16 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
-
+const MAX_AMOUNT = 1025;
+const LOADING_AMOUNT = 20;
 const pokemonDataArray = [];
-let currentPokemonDataArray = [];
 
 async function init() {
-    await getPokemonIdNameType(1);
-    console.table(pokemonDataArray);
+    await getPokemonIdNameType(start=1);
     await renderPokemonCards(pokemonDataArray);
+    await renderLoadMoreButton();
 }
 
 async function getPokemonIdNameType(start) {
-    for (let id = start; id < (start+20); id++) {
+    for (let id = start; (id < (start + LOADING_AMOUNT)) && (id <= MAX_AMOUNT); id++) {
         const response = await fetch(`${BASE_URL}/${id}`);
         const responseToJson = await response.json();       
         const types = [];
@@ -18,23 +18,19 @@ async function getPokemonIdNameType(start) {
         for (let indexType = 0; indexType < responseToJson.types.length; indexType++) {
             types.push(responseToJson.types[indexType].type.name);
         }
-
-        pokemonDataArray.push (
-            {
-                pokeID : id,
-                name : responseToJson.name.charAt(0).toUpperCase() + responseToJson.name.slice(1),
-                types : types
-            }
-        );
-    }
+        pokemonDataArray.push ({
+            pokeID : id,
+            name : responseToJson.name.charAt(0).toUpperCase() + responseToJson.name.slice(1),
+            types : types
+        });
+    };
 }
 
-async function renderPokemonCards() {
-    currentPokemonDataArray = pokemonDataArray;
-    for (let index = 0; index < currentPokemonDataArray.length; index++) {
-        const pokeID = currentPokemonDataArray[index].pokeID;
-        const name = currentPokemonDataArray[index].name;
-        const types = currentPokemonDataArray[index].types;
+async function renderPokemonCards(currentArray) {
+    for (let index = 0; index < currentArray.length; index++) {
+        const pokeID = currentArray[index].pokeID;
+        const name = currentArray[index].name;
+        const types = currentArray[index].types;
         const type1 = types[0];
         let type2 = (types.length == 2) ? types[1] : type1;
         
@@ -45,11 +41,28 @@ async function renderPokemonCards() {
             document.getElementById(`#Types${pokeID}`).innerHTML += 
             templatePokemonTypes(types[indexType]);
         };
-    }
+    };
+}
+
+function renderLoadMoreButton() {
+    document.getElementById('#LoadMoreButton').innerHTML = templateLoadMoreButton();
+}
+
+function removeLoadMoreButton() {
+    document.getElementById('#LoadMoreButton').innerHTML = "";
 }
 
 async function loadMorePokemon() {
-    await getPokemonIdNameType(pokemonDataArray.length+1);
-    console.table(pokemonDataArray);
-    // await renderPokemonCards(pokemonDataArray);
+    const missingAmount = MAX_AMOUNT - pokemonDataArray.length;
+    await removeLoadMoreButton();
+    
+    if (LOADING_AMOUNT < missingAmount) {
+        await getPokemonIdNameType(pokemonDataArray.length+1);
+        await renderPokemonCards(pokemonDataArray.slice(-LOADING_AMOUNT));
+        await renderLoadMoreButton();
+    } else {
+        await getPokemonIdNameType(pokemonDataArray.length+1);
+        await renderPokemonCards(pokemonDataArray.slice(-missingAmount));
+    }
+    
 }
