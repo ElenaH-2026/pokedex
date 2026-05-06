@@ -18,6 +18,7 @@ h1 {
 
 h2 {
     font-size: 32px;
+    margin: 8px 0;
 }
 
 ul {
@@ -48,7 +49,6 @@ header, footer {
 
 footer {
     justify-content: center;
-    height: 40px;
 }
 
 footer > a {
@@ -72,6 +72,7 @@ header > div {
 
 header > div > img,
 footer > a > img {
+    padding: 8px 0;
     width: 24px;
 }
 
@@ -96,11 +97,10 @@ main {
     border-radius: var(--border-radius-small);
     padding: 8px;
     aspect-ratio: 4 / 3;
-    width: 200px;
+    width: 250px;
 }
 
 .pokemon-card > img {
-    background: linear-gradient(to right top, red 0 40%, blue 60% 100%);
     border-radius: var(--border-radius-small);
     padding: 16px;
     cursor: pointer;
@@ -108,4 +108,9 @@ main {
 
 .pokemon-card > div {
     text-align: center;
+}
+
+.pokemon-card > div > span {
+    border-radius: var(--border-radius-small);
+    padding: 2px 16px 4px;
 }
