@@ -18,10 +18,10 @@ function templatePokemonTypes(type) {
         </span>`
 }
 
-function templateLoadMoreButton() {
+function templateLoadMoreButton(loadingAmount) {
     return `
         <button onclick="loadMorePokemon()"
             class="btn-load-more">
-            Load more Pokémon
+            Load ${loadingAmount} more
         </button>`
 }

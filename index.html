@@ -21,19 +21,23 @@
                 <span>Elenas Pokedex</span>
             </div>
             <div>
-                <label for="#LoadingAmount">Loaded Pokémon:</label>
-                <input id="#LoadingAmount" type="number" name="loading amount" required max="1025" value="10">
-                <button type="submit" class="btn-submit">
+                <label for="#LoadingAmount">Loading Amount Pokémon:</label>
+                <input id="#LoadingAmount" type="number" name="loading amount" 
+                    required max="500" value="20"
+                    onkeyup="pressKeyEnter(event)"">
+                <button onclick="changeLoadingAmount()"
+                    type="submit" class="btn-submit">
                     <img src="./assets/icons/check.svg" 
-                        alt="submit">
+                        alt="submit loading amount of Pokémon">
                 </button>
             </div>
             <div>
                 <label for="#Search">Search Pokémon:</label>
-                <input id="#Search" type="search" name="search" required minlength="3" placeholder="min 3 lts">
+                <input id="#Search" type="search" name="search" 
+                    required minlength="3" placeholder="min 3 lts">
                 <button type="submit" class="btn-submit">
                     <img src="./assets/icons/search.svg" 
-                        alt="search">
+                        alt="search for Pokémon">
                 </button>
             </div>
     </header>
@@ -42,7 +46,8 @@
         <ul id="#PokemonList"
             class="container-pokemon-cards">
         </ul>
-        <div id="#LoadMoreButton">
+        <div id="#LoadMoreButton"
+            class="container-load-more-button">
         </div>
         
     </main>
