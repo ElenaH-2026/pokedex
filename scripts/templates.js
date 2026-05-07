@@ -13,7 +13,9 @@ function templatePokemonCard (pokeID, name, type1, type2) {
 
 function templatePokemonTypes(type) {
     return `
-        <span style="background-color: var(--${type})">${type}</span>`
+        <span style="background-color: var(--${type})">
+            ${type}
+        </span>`
 }
 
 function templateLoadMoreButton() {

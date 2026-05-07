@@ -21,9 +21,17 @@
                 <span>Elenas Pokedex</span>
             </div>
             <div>
+                <label for="#LoadingAmount">Loaded Pokémon:</label>
+                <input id="#LoadingAmount" type="number" name="loading amount" required max="1025" value="10">
+                <button type="submit" class="btn-submit">
+                    <img src="./assets/icons/check.svg" 
+                        alt="submit">
+                </button>
+            </div>
+            <div>
                 <label for="#Search">Search Pokémon:</label>
-                <input id="#Search" type="text" name="search" minlength="3" placeholder="min 3 letters">
-                <button type="submit" class="btn-search">
+                <input id="#Search" type="search" name="search" required minlength="3" placeholder="min 3 lts">
+                <button type="submit" class="btn-submit">
                     <img src="./assets/icons/search.svg" 
                         alt="search">
                 </button>

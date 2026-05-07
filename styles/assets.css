@@ -1,8 +1,17 @@
 input {
+    text-align: center;
     background-color: var(--color-dark);
     border: 1px solid var(--color-light);
     border-radius: var(--border-radius-small);
-    padding: 8px;
+    padding: 8px 0 8px 8px;
+    
+}
+
+[id="#LoadingAmount"] {
+    width: 60px;
+}
+
+[id="#Search"] {
     width: 100px;
 }
 
@@ -13,7 +22,7 @@ button {
     cursor: pointer;
 }
 
-.btn-search {
+.btn-submit {
     padding: 0 8px;
 }
 

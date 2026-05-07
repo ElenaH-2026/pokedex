@@ -115,6 +115,7 @@ main {
 }
 
 .pokemon-card > div > span {
+    color: var(--color-dark);
     border-radius: var(--border-radius-small);
     padding: 2px 16px 4px;
 }
