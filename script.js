@@ -1,6 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const MAX_AMOUNT = 1025;
-const LOADING_AMOUNT = 20;
+const LOADING_AMOUNT = 5;
 const pokemonDataArray = [];
 
 async function init() {
