@@ -64,5 +64,4 @@ async function loadMorePokemon() {
         await getPokemonIdNameType(pokemonDataArray.length+1);
         await renderPokemonCards(pokemonDataArray.slice(-missingAmount));
     }
-    
 }
