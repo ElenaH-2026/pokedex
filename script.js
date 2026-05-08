@@ -1,6 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const MAX_AMOUNT = 1025;
-let loadingAmount = 5;
+let loadingAmount = 20;
 const pokemonDataArray = [];
 const pokemonImageCache = {};
 
@@ -34,15 +34,36 @@ async function renderPokemonCards(currentArray) {
         const types = currentArray[index].types;
         const type1 = types[0];
         let type2 = (types.length == 2) ? types[1] : type1;
+        const pokeImage = await pushPokemonImageToCache(pokeID, name, type1, type2);
         
-        document.getElementById('#PokemonList').innerHTML += 
-            await templatePokemonCard (pokeID, name, type1, type2)
+        document.getElementById('#PokemonList').innerHTML += await templatePokemonCard (pokeID, name, type1, type2);
+        document.getElementById(`#Image${pokeID}`).appendChild(pokeImage);
 
         for (let indexType = 0; indexType < types.length; indexType++) {
-            document.getElementById(`#Types${pokeID}`).innerHTML += 
-                templatePokemonTypes(types[indexType]);
+            document.getElementById(`#Types${pokeID}`).innerHTML += templatePokemonTypes(types[indexType]);
         };
     };
+}
+
+function pushPokemonImageToCache(pokeID, name, type1, type2) {
+    return new Promise((resolve, reject) => {
+        if (pokemonImageCache[pokeID]) {
+            resolve(pokemonImageCache[pokeID]);
+            return;
+        }
+
+        const img = new Image();
+        img.role = `button`;
+        img.style = `background: linear-gradient(to right top, var(--${type1}) 0 40%, var(--${type2}) 60% 100%)`;
+        img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png`;
+        img.alt = `${name}`;
+        img.onload = () => {
+            pokemonImageCache[pokeID] = img;
+            resolve(img);
+        };
+
+        img.onerror = reject;
+    });
 }
 
 async function loadMorePokemon() {

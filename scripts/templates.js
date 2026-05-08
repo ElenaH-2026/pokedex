@@ -1,14 +1,10 @@
-function templatePokemonCard (pokeID, name, type1, type2) {
+function templatePokemonCard (pokeID, name) {
     return `
         <li class="pokemon-card">
-                <img role="button"
-                    style="background: linear-gradient(to right top, var(--${type1}) 0 40%, var(--${type2}) 60% 100%)"
-                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png" 
-                    alt="${name}">
-                <h2>${name}</h2>
-                <div id="#Types${pokeID}">
-                </div>
-            </li>`
+            <div id="#Image${pokeID}"></div>
+            <h2>${name}</h2>
+            <div id="#Types${pokeID}"></div>
+        </li>`
 }
 
 function templatePokemonTypes(type) {
@@ -25,3 +21,8 @@ function templateLoadMoreButton(loadingAmount) {
             Load ${loadingAmount} more
         </button>`
 }
+
+// <img role="button"
+//     style="background: linear-gradient(to right top, var(--${type1}) 0 40%, var(--${type2}) 60% 100%)"
+//     src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png" 
+//     alt="${name}"></img>

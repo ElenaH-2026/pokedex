@@ -103,7 +103,7 @@ main {
     width: 250px;
 }
 
-.pokemon-card > img {
+.pokemon-card > div > img {
     border-radius: var(--border-radius-small);
     padding: 16px;
     width: 100%;

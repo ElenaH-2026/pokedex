@@ -45,12 +45,15 @@ a:focus-visible,
 button:hover, 
 button:focus-visible,
 .pokemon-card:hover,
-.pokemon-card:focus-visible {
+.pokemon-card:focus-visible,
+.pokemon-card > div > img:hover,
+.pokemon-card > div > img:focus-visible {
     filter: drop-shadow(var(--shadow)); 
 }
 
 a:active,
 button:active,
-.pokemon-card:active {
+.pokemon-card:active,
+.pokemon-card > div > img:active {
     filter: drop-shadow(var(--shadow-big)); 
 }
