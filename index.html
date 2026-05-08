@@ -18,13 +18,14 @@
     <header class="wrapper">
             <div>
                 <img src="./assets/icons/pokeball-green.svg" alt="Poké Ball">
-                <span>Elenas Pokedex</span>
+                <span>Elenas Pokédex</span>
             </div>
             <div>
-                <label for="#LoadingAmount">Loading Amount Pokémon:</label>
-                <input id="#LoadingAmount" type="number" name="loading amount" 
-                    required max="500" value="20"
-                    onkeyup="pressKeyEnter(event)"">
+                <label for="#LoadingAmount">Loading Amount:</label>
+                <input id="#LoadingAmount" class="input-loading-amount" 
+                    type="number" name="loading amount" 
+                    max="500" value="20" required
+                    onkeyup="pressKeyEnter(event)">
                 <button onclick="changeLoadingAmount()"
                     type="submit" class="btn-submit">
                     <img src="./assets/icons/check.svg" 
@@ -33,8 +34,9 @@
             </div>
             <div>
                 <label for="#Search">Search Pokémon:</label>
-                <input id="#Search" type="search" name="search" 
-                    required minlength="3" placeholder="min 3 lts">
+                <input id="#Search" class="input-search" 
+                    type="search" name="search" 
+                    minlength="3" placeholder="min 3 lts" required>
                 <button type="submit" class="btn-submit">
                     <img src="./assets/icons/search.svg" 
                         alt="search for Pokémon">
@@ -42,7 +44,7 @@
             </div>
     </header>
     <main id="#PageStart" class="wrapper">
-        <h1>Elenas Pokedex</h1>
+        <h1>Elenas Pokédex</h1>
         <ul id="#PokemonList"
             class="container-pokemon-cards">
         </ul>

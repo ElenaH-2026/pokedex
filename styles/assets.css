@@ -7,11 +7,11 @@ input {
     
 }
 
-[id="#LoadingAmount"] {
+.input-loading-amount {
     width: 60px;
 }
 
-[id="#Search"] {
+.input-search {
     width: 100px;
 }
 

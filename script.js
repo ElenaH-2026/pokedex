@@ -1,7 +1,8 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const MAX_AMOUNT = 1025;
-let loadingAmount = 20;
+let loadingAmount = 5;
 const pokemonDataArray = [];
+const pokemonImageCache = {};
 
 async function init() {
     await getPokemonIdNameType(start=1);
