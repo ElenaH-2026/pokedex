@@ -106,3 +106,7 @@ function pressKeyEnter(event) {
         changeLoadingAmount();
     };
 }
+
+function showPokemonOverlay() {
+    document.getElementById('#PokemonOverlay').showModal();
+}

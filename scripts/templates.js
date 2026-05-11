@@ -1,7 +1,7 @@
 function templatePokemonCard (pokeID, name) {
     return `
         <li class="pokemon-card">
-            <div id="#Image${pokeID}"></div>
+            <div id="#Image${pokeID}" onclick="showPokemonOverlay()"></div>
             <h2>${name}</h2>
             <div id="#Types${pokeID}"></div>
         </li>`

@@ -44,3 +44,11 @@
 .d-none {
     display: none;
 }
+
+dialog {
+    background-color: transparent;
+    justify-self: center;
+    align-self: center;
+    border: none;
+    width: min(100%, 500px);
+}
