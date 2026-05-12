@@ -7,7 +7,6 @@
     --border-radius-small: 4px 24px;
     --border-radius-small-reverse: 24px 4px;
     --border-radius-big: 8px 48px;
-    /* --dialog-spacing: 98%; */
 
     /* pokemon types_: */
     --normal: rgb(183, 183, 168);
@@ -50,5 +49,5 @@ dialog {
     justify-self: center;
     align-self: center;
     border: none;
-    width: min(100%, 500px);
+    width: min(100%, 800px);
 }

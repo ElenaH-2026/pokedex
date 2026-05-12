@@ -107,6 +107,28 @@ function pressKeyEnter(event) {
     };
 }
 
-function showPokemonOverlay() {
-    document.getElementById('#PokemonOverlay').showModal();
+function showDialog(pokeID, name, type1, type2) {
+    document.getElementById('#Dialog').showModal();
+    renderPokemonOverlay(pokeID, name, type1, type2);
+}
+
+function renderPokemonOverlay(pokeID, name, type1, type2) {
+    
+    document.getElementById('#PokemonOverlay').innerHTML = templatePokemonOverlay(pokeID, name, type1, type2);
+    document.getElementById(`#TypesOverlay${pokeID}`).innerHTML = templatePokemonTypes(type1);
+    if (type1 != type2) {
+        document.getElementById(`#TypesOverlay${pokeID}`).innerHTML += templatePokemonTypes(type2);
+    }
+}
+
+function renderPreviousPokemonOverlay(pokeID, name, type1, type2) {
+    renderPokemonOverlay(pokeID-1, name, type1, type2);
+}
+
+function renderNextPokemonOverlay(pokeID, name, type1, type2) {
+    renderPokemonOverlay(pokeID+1, name, type1, type2);
+}
+
+function closeDialog() {
+    document.getElementById('#Dialog').close();
 }

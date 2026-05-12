@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./styles/assets.css">
 </head>
 <body onload="init()">
-    <header class="wrapper">
+    <header class="wrapper border-big fixed-header">
             <div>
                 <img src="./assets/icons/pokeball-green.svg" alt="Poké Ball">
                 <span>Elenas Pokédex</span>
@@ -27,7 +27,7 @@
                     max="500" value="20" required
                     onkeyup="pressKeyEnter(event)">
                 <button onclick="changeLoadingAmount()"
-                    type="submit" class="btn-submit">
+                    type="submit" class="btn-icon">
                     <img src="./assets/icons/check.svg" 
                         alt="submit loading amount of Pokémon">
                 </button>
@@ -37,7 +37,8 @@
                 <input id="#Search" class="input-search" 
                     type="search" name="search" 
                     minlength="3" placeholder="min 3 lts" required>
-                <button type="submit" class="btn-submit">
+                <button onclick=""
+                    type="submit" class="btn-icon">
                     <img src="./assets/icons/search.svg" 
                         alt="search for Pokémon">
                 </button>
@@ -52,37 +53,14 @@
             class="container-load-more-button">
         </div>
 
-        <dialog id="#PokemonOverlay" closedby="any">
-            <div class="pokemon-overlay">
-                <div>
-                    <span>pokeID</span>
-                    <span>Kategorie</span>
-                    <button>X</button>
-                </div>
-                <section>
-                    <h3>Name</h3>
-                    <img 
-                        src="./assets/icons/pokeball-green.svg" 
-                        alt="">
-                    <div>
-                        <div>
-                            <span style="background-color: var(--grass)">grass</span>
-                            <span style="background-color: var(--poison)">poison</span>
-                        </div>
-                        <div>
-                            <span style="background-color: var(--fire)">fire</span>
-                            <span style="background-color: var(--flying)">flying</span>
-                            <span style="background-color: var(--water)">water</span>
-                        </div>
-                    </div>
-                </section>
-                
-
+        <dialog id="#Dialog" closedby="any">
+            <div id="#PokemonOverlay"
+                class="pokemon-overlay">
             </div>
         </dialog>
         
     </main>
-    <footer class="wrapper">
+    <footer class="wrapper border-big">
         <a href="##PageStart">
             <img src="./assets/icons/pokeball-green.svg" 
                 alt="to the start of the page">

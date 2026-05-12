@@ -3,11 +3,11 @@
 * {
     font-family: 'Barlow', sans-serif;
     color: var(--color-font);
+    text-align: center;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-weight: 500;
-    text-align: center;
 }
 
 h1 {
@@ -16,16 +16,27 @@ h1 {
     margin-bottom: 24px;
 }
 
-h2 {
+h2, h3 {
     font-size: 32px;
     margin: 8px 0;
+}
+
+h3 {
+    justify-self: center;
+    padding: 8px 24px;
+    width: fit-content;
 }
 
 ul {
     list-style-type: none;
 }
 
-
+.border-big {
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-light);
+    border-radius: var(--border-radius-big);
+    filter: drop-shadow(var(--shadow));
+}
 
 /* body */
 
@@ -38,32 +49,19 @@ body {
 
 /* header and footer */
 
-header, footer {
-    display: flex;
-    background-color: var(--color-dark);
-    border: 1px solid var(--color-light);
-    border-radius: var(--border-radius-big);
-    filter: drop-shadow(var(--shadow));
-    align-items: center;
-}
-
-footer {
-    justify-content: center;
-    margin-top: 24px;
-}
-
-footer > a {
-    line-height: 1;
-}
-
-header {
+.fixed-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    justify-content: space-between;
-    height: 60px;
     z-index: 1;
+    height: 60px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 header > div {
@@ -76,6 +74,17 @@ header > div > img,
 footer > a > img {
     padding: 8px 0;
     width: 24px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+}
+
+footer > a {
+    line-height: 1;
 }
 
 /* main */
@@ -110,11 +119,7 @@ main {
     cursor: pointer;
 }
 
-.pokemon-card > div {
-    text-align: center;
-}
-
-.pokemon-card > div > span {
+.span-type {
     color: var(--color-dark);
     border-radius: var(--border-radius-small);
     padding: 2px 16px 4px;
@@ -127,12 +132,35 @@ main {
 /* dialog */
 
 .pokemon-overlay {
+    background-color: var(--color-dark);
     display: flex;
     flex-direction: column;
-    background-color: var(--color-dark);
+    align-items: center;
     border: 1px solid var(--color-light);
     border-radius: var(--border-radius-big);
+}
 
+.overlay-header {
+    padding: 8px 24px;
+    width: 100%;
+}
+
+.overlay-header > span {
+    font-size: 20px;
+}
+
+.pokemon-overlay > section {
+    width: 100%;
+}
+
+.pokemon-overlay > section > img {
+    margin: 16px 0;
+}
+
+.pokemon-overlay > section > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 24px;
 }
 
 @media screen and (max-width: 768px) {

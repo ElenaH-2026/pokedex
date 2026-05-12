@@ -22,7 +22,11 @@ button {
     cursor: pointer;
 }
 
-.btn-submit {
+.btn-reverse {
+    border-radius: var(--border-radius-small-reverse);
+}
+
+.btn-icon {
     padding: 0 8px;
 }
 
