@@ -1,13 +1,17 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const MAX_AMOUNT = 1025;
 let loadingAmount = 20;
-const pokemonDataArray = [];
+const pokemonIdArray = [];
+const pokemonDataFetched = {};
 const pokemonImageCache = {};
 
 async function init() {
     await getPokemonIdNameType(start=1);
-    await renderPokemonCards(pokemonDataArray);
-    await renderLoadMoreButton(loadingAmount);
+    // await renderPokemonCards(pokemonIdArray);
+    // await renderLoadMoreButton(loadingAmount);
+    console.log(pokemonIdArray);
+    console.log(pokemonDataFetched);
+    
 }
 
 async function getPokemonIdNameType(start) {
@@ -19,17 +23,18 @@ async function getPokemonIdNameType(start) {
         for (let indexType = 0; indexType < responseToJson.types.length; indexType++) {
             types.push(responseToJson.types[indexType].type.name);
         }
-        pokemonDataArray.push ({
-            pokeID : id,
+        pokemonIdArray.push(id);
+        pokemonDataFetched[id] = {
             name : responseToJson.name.charAt(0).toUpperCase() + responseToJson.name.slice(1),
             types : types
-        });
+        };
     };
 }
 
 async function renderPokemonCards(currentArray) {
     for (let index = 0; index < currentArray.length; index++) {
-        const pokeID = currentArray[index].pokeID;
+        // Hier bin ich stehen geblieben
+        const pokeID = currentArray[index];
         const name = currentArray[index].name;
         const types = currentArray[index].types;
         const type1 = types[0];
@@ -113,7 +118,7 @@ function showDialog(pokeID, name, type1, type2) {
 }
 
 function renderPokemonOverlay(pokeID, name, type1, type2) {
-    
+    // const i = pokemonDataArray.indexOf(pokemonDataArray.)
     document.getElementById('#PokemonOverlay').innerHTML = templatePokemonOverlay(pokeID, name, type1, type2);
     document.getElementById(`#TypesOverlay${pokeID}`).innerHTML = templatePokemonTypes(type1);
     if (type1 != type2) {
