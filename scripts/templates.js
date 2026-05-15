@@ -1,7 +1,7 @@
-function templatePokemonCard (pokeID, name, type1, type2) {
+function templatePokemonCard (pokeID, name) {
     return `
         <li class="pokemon-card">
-            <div id="#Image${pokeID}" onclick="showDialog(${pokeID}, '${name}', '${type1}', '${type2}')"></div>
+            <div id="#Image${pokeID}" onclick="showDialog(${pokeID})"></div>
             <h2>${name}</h2>
             <div id="#Types${pokeID}"></div>
         </li>`
@@ -38,13 +38,13 @@ function templatePokemonOverlay(pokeID, name, type1, type2) {
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png" 
                 alt="${name}">
             <div>
-                <button onclick="renderPreviousPokemonOverlay(${pokeID}, '${name}', '${type1}', '${type2}')"
+                <button onclick="renderPreviousPokemonOverlay(${pokeID})"
                     class="btn-icon btn-reverse">
                     <img src="./assets/icons/arrow-back.svg" 
                     alt="previous Pokémon">
                 </button>
                 <div id="#TypesOverlay${pokeID}"></div>
-                <button onclick="renderNextPokemonOverlay(${pokeID}, '${name}', '${type1}', '${type2}')"
+                <button onclick="renderNextPokemonOverlay(${pokeID})"
                     class="btn-icon">
                     <img src="./assets/icons/arrow-forward.svg" 
                     alt="next Pokémon">

@@ -6,47 +6,54 @@ const pokemonDataFetched = {};
 const pokemonImageCache = {};
 
 async function init() {
-    await getPokemonIdNameType(start=1);
-    // await renderPokemonCards(pokemonIdArray);
-    // await renderLoadMoreButton(loadingAmount);
-    console.log(pokemonIdArray);
-    console.log(pokemonDataFetched);
-    
+    await getPokemonsIdNameType(start=1, loadingAmount);
+    await renderPokemonCards(pokemonIdArray);
+    await renderLoadMoreButton(loadingAmount);
 }
 
-async function getPokemonIdNameType(start) {
-    for (let id = start; (id < (start + loadingAmount)) && (id <= MAX_AMOUNT); id++) {
-        const response = await fetch(`${BASE_URL}/${id}`);
-        const responseToJson = await response.json();       
-        const types = [];
+async function getPokemonsIdNameType(start, end) {
+    for (let pokeID = start; (pokeID < (start + end)) && (pokeID <= MAX_AMOUNT); pokeID++) {
+        await getOnePokemonIdNameType(pokeID);
+    };
+}
 
-        for (let indexType = 0; indexType < responseToJson.types.length; indexType++) {
-            types.push(responseToJson.types[indexType].type.name);
-        }
-        pokemonIdArray.push(id);
-        pokemonDataFetched[id] = {
-            name : responseToJson.name.charAt(0).toUpperCase() + responseToJson.name.slice(1),
-            types : types
-        };
+async function getOnePokemonIdNameType(pokeID) {
+    const response = await fetch(`${BASE_URL}/${pokeID}`);
+    const responseToJson = await response.json();       
+    const types = [];
+
+    for (let indexType = 0; indexType < responseToJson.types.length; indexType++) {
+        types.push(responseToJson.types[indexType].type.name);
+    }
+    pokemonIdArray.push(pokeID);
+    pokemonDataFetched[pokeID] = {
+        name : responseToJson.name.charAt(0).toUpperCase() + responseToJson.name.slice(1),
+        types : types
     };
 }
 
 async function renderPokemonCards(currentArray) {
     for (let index = 0; index < currentArray.length; index++) {
-        // Hier bin ich stehen geblieben
         const pokeID = currentArray[index];
-        const name = currentArray[index].name;
-        const types = currentArray[index].types;
-        const type1 = types[0];
-        let type2 = (types.length == 2) ? types[1] : type1;
-        const pokeImage = await pushPokemonImageToCache(pokeID, name, type1, type2);
-        
-        document.getElementById('#PokemonList').innerHTML += await templatePokemonCard (pokeID, name, type1, type2);
-        document.getElementById(`#Image${pokeID}`).appendChild(pokeImage);
+        await renderOnePokemonCard(pokeID);
+    };
+}
 
-        for (let indexType = 0; indexType < types.length; indexType++) {
-            document.getElementById(`#Types${pokeID}`).innerHTML += templatePokemonTypes(types[indexType]);
-        };
+async function renderOnePokemonCard(pokeID) {
+    const name = pokemonDataFetched[pokeID].name;
+    const types = pokemonDataFetched[pokeID].types;
+    const type1 = types[0];
+    let type2 = (types.length == 2) ? types[1] : type1;
+    const pokeImage = await pushPokemonImageToCache(pokeID, name, type1, type2);
+    
+    document.getElementById('#PokemonList').innerHTML += await templatePokemonCard (pokeID, name);
+    document.getElementById(`#Image${pokeID}`).appendChild(pokeImage);
+    await renderPokemonTypes(pokeID, types, '#Types');
+}
+
+function renderPokemonTypes(pokeID, types, typesID) {
+    for (let indexType = 0; indexType < types.length; indexType++) {
+        document.getElementById(`${typesID}${pokeID}`).innerHTML += templatePokemonTypes(types[indexType]);
     };
 }
 
@@ -56,7 +63,6 @@ function pushPokemonImageToCache(pokeID, name, type1, type2) {
             resolve(pokemonImageCache[pokeID]);
             return;
         }
-
         const img = new Image();
         img.role = `button`;
         img.style = `background: linear-gradient(to right top, var(--${type1}) 0 40%, var(--${type2}) 60% 100%)`;
@@ -66,24 +72,47 @@ function pushPokemonImageToCache(pokeID, name, type1, type2) {
             pokemonImageCache[pokeID] = img;
             resolve(img);
         };
-
         img.onerror = reject;
     });
 }
 
 async function loadMorePokemon() {
-    const missingAmount = MAX_AMOUNT - pokemonDataArray.length;
     await removeLoadMoreButton();
-    
-    if (loadingAmount < missingAmount) {
-        await getPokemonIdNameType(pokemonDataArray.length+1);
-        await renderPokemonCards(pokemonDataArray.slice(-loadingAmount));
-        await renderLoadMoreButton(loadingAmount);
-    } else {
-        await getPokemonIdNameType(pokemonDataArray.length+1);
-        await renderPokemonCards(pokemonDataArray.slice(-missingAmount));
-        await renderMessageMaxAmount();
+    const missingAmount = MAX_AMOUNT - pokemonIdArray.length;
+    const loading = (loadingAmount < missingAmount) ? loadingAmount : missingAmount;
+    await checkForLoadingGap(loading);
+    await checkForLoadMoreButton();
+}
+
+async function checkForLoadingGap(loading) {
+    await pokemonIdArray.sort((a, b) => a-b);
+    if (pokemonIdArray[pokemonIdArray.length-1] == pokemonIdArray.length) {
+        await getPokemonsIdNameType(pokemonIdArray.length+1, loading);
+        await renderPokemonCards(pokemonIdArray.slice(-loading));
+        return;
     };
+    for (let index = 1; index < pokemonIdArray.length; index++) {
+        const gap = pokemonIdArray[index] - pokemonIdArray[index-1];
+        if (gap == 1) {
+            continue;
+        };
+        if (gap > 1 && gap > loading) {
+            await getPokemonsIdNameType(pokemonIdArray[index-1]+1, loading);
+            await renderPokemonCards(pokemonIdArray.slice(-loading));
+            return;
+        };
+        if (gap > 1 && gap < loading) {
+            const missingLoading = loading - gap;
+            await getPokemonsIdNameType(pokemonIdArray[index-1] + 1, gap-1);
+            await renderPokemonCards(pokemonIdArray.slice(-(gap-1)));
+            checkForLoadingGap(missingLoading);
+            return;
+        };
+    };
+}
+
+function checkForLoadMoreButton() {
+    (pokemonIdArray.length < MAX_AMOUNT) ? renderLoadMoreButton(loadingAmount) : renderMessageMaxAmount();
 }
 
 function renderLoadMoreButton(loadingAmount) {
@@ -102,7 +131,7 @@ function renderMessageMaxAmount() {
 
 function changeLoadingAmount() {
     loadingAmount = parseInt(document.getElementById('#LoadingAmount').value);
-    (pokemonDataArray.length < MAX_AMOUNT) ? renderLoadMoreButton(loadingAmount) : renderMessageMaxAmount();
+    checkForLoadMoreButton();
 }
 
 function pressKeyEnter(event) {
@@ -112,26 +141,49 @@ function pressKeyEnter(event) {
     };
 }
 
-function showDialog(pokeID, name, type1, type2) {
+function showDialog(pokeID) {
     document.getElementById('#Dialog').showModal();
-    renderPokemonOverlay(pokeID, name, type1, type2);
+    renderPokemonOverlay(pokeID, '#TypesOverlay');
 }
 
-function renderPokemonOverlay(pokeID, name, type1, type2) {
-    // const i = pokemonDataArray.indexOf(pokemonDataArray.)
-    document.getElementById('#PokemonOverlay').innerHTML = templatePokemonOverlay(pokeID, name, type1, type2);
-    document.getElementById(`#TypesOverlay${pokeID}`).innerHTML = templatePokemonTypes(type1);
-    if (type1 != type2) {
-        document.getElementById(`#TypesOverlay${pokeID}`).innerHTML += templatePokemonTypes(type2);
-    }
+async function renderPokemonOverlay(pokeID) {
+    const name = pokemonDataFetched[pokeID].name;
+    const types = pokemonDataFetched[pokeID].types;
+    const type1 = types[0];
+    let type2 = (types.length == 2) ? types[1] : type1;
+
+    document.getElementById('#PokemonOverlay').innerHTML = await templatePokemonOverlay(pokeID, name, type1, type2);
+    await renderPokemonTypes(pokeID, types, '#TypesOverlay');
 }
 
-function renderPreviousPokemonOverlay(pokeID, name, type1, type2) {
-    renderPokemonOverlay(pokeID-1, name, type1, type2);
+async function renderPreviousPokemonOverlay(pokeID) {
+    if (pokeID == 1) {
+        if (!pokemonIdArray.includes(MAX_AMOUNT)) {
+            await getOnePokemonIdNameType(MAX_AMOUNT);
+            await renderOnePokemonCard(MAX_AMOUNT);
+        };
+        await renderPokemonOverlay(MAX_AMOUNT);
+        return;
+    };
+    const previousPokeID = pokeID - 1;
+    if (!pokemonIdArray.includes(previousPokeID)) {
+        await getOnePokemonIdNameType(previousPokeID);
+        await renderOnePokemonCard(previousPokeID);
+    };
+    await renderPokemonOverlay(previousPokeID);
 }
 
-function renderNextPokemonOverlay(pokeID, name, type1, type2) {
-    renderPokemonOverlay(pokeID+1, name, type1, type2);
+async function renderNextPokemonOverlay(pokeID) {
+    if (pokeID == MAX_AMOUNT) {
+        await renderPokemonOverlay(1);
+        return;
+    };
+    const nextPokeID = pokeID + 1;
+    if (!pokemonIdArray.includes(nextPokeID)) {
+        await getOnePokemonIdNameType(nextPokeID);
+        await renderOnePokemonCard(nextPokeID);
+    };
+    await renderPokemonOverlay(nextPokeID);
 }
 
 function closeDialog() {
