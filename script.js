@@ -6,30 +6,46 @@ const pokemonDataFetched = {};
 const pokemonImageCache = {};
 
 async function init() {
-    await getPokemonsIdNameType(start=1, loadingAmount);
+    // lodingspinner start
+    await getPokemonsIdName(start=1, end=loadingAmount);
+    await getPokemonsType(start=1, end=loadingAmount);
     await renderPokemonCards(pokemonIdArray);
     await renderLoadMoreButton(loadingAmount);
+    // lodingspinner end
+    await getPokemonsIdName(start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount))
 }
 
-async function getPokemonsIdNameType(start, end) {
+async function getPokemonsIdName(start, end) {
     for (let pokeID = start; (pokeID < (start + end)) && (pokeID <= MAX_AMOUNT); pokeID++) {
-        await getOnePokemonIdNameType(pokeID);
+        await getOnePokemonIdName(pokeID);
     };
 }
 
-async function getOnePokemonIdNameType(pokeID) {
+async function getPokemonsType(start, end) {
+    for (let pokeID = start; (pokeID < (start + end)) && (pokeID <= MAX_AMOUNT); pokeID++) {
+        await getOnePokemonType(pokeID);
+    };
+}
+
+async function getOnePokemonIdName(pokeID) {
+    const response = await fetch(`${BASE_URL}/${pokeID}`);
+    const responseToJson = await response.json();       
+
+    pokemonDataFetched[pokeID] = {
+        name : responseToJson.name.charAt(0).toUpperCase() + responseToJson.name.slice(1),
+    };
+}
+
+async function getOnePokemonType(pokeID) {
     const response = await fetch(`${BASE_URL}/${pokeID}`);
     const responseToJson = await response.json();       
     const types = [];
+    pokemonIdArray.push(pokeID);
 
     for (let indexType = 0; indexType < responseToJson.types.length; indexType++) {
         types.push(responseToJson.types[indexType].type.name);
     }
-    pokemonIdArray.push(pokeID);
-    pokemonDataFetched[pokeID] = {
-        name : responseToJson.name.charAt(0).toUpperCase() + responseToJson.name.slice(1),
-        types : types
-    };
+    pokemonDataFetched[pokeID].types = types;
 }
 
 async function renderPokemonCards(currentArray) {
@@ -87,7 +103,7 @@ async function loadMorePokemon() {
 async function checkForLoadingGap(loading) {
     await pokemonIdArray.sort((a, b) => a-b);
     if (pokemonIdArray[pokemonIdArray.length-1] == pokemonIdArray.length) {
-        await getPokemonsIdNameType(pokemonIdArray.length+1, loading);
+        await getPokemonsType(pokemonIdArray.length+1, loading);
         await renderPokemonCards(pokemonIdArray.slice(-loading));
         return;
     };
@@ -97,13 +113,13 @@ async function checkForLoadingGap(loading) {
             continue;
         };
         if (gap > 1 && gap > loading) {
-            await getPokemonsIdNameType(pokemonIdArray[index-1]+1, loading);
+            await getPokemonsType(pokemonIdArray[index-1]+1, loading);
             await renderPokemonCards(pokemonIdArray.slice(-loading));
             return;
         };
         if (gap > 1 && gap < loading) {
             const missingLoading = loading - gap;
-            await getPokemonsIdNameType(pokemonIdArray[index-1] + 1, gap-1);
+            await getPokemonsType(pokemonIdArray[index-1] + 1, gap-1);
             await renderPokemonCards(pokemonIdArray.slice(-(gap-1)));
             checkForLoadingGap(missingLoading);
             return;
@@ -159,7 +175,7 @@ async function renderPokemonOverlay(pokeID) {
 async function renderPreviousPokemonOverlay(pokeID) {
     if (pokeID == 1) {
         if (!pokemonIdArray.includes(MAX_AMOUNT)) {
-            await getOnePokemonIdNameType(MAX_AMOUNT);
+            await getOnePokemonType(MAX_AMOUNT);
             await renderOnePokemonCard(MAX_AMOUNT);
         };
         await renderPokemonOverlay(MAX_AMOUNT);
@@ -167,7 +183,7 @@ async function renderPreviousPokemonOverlay(pokeID) {
     };
     const previousPokeID = pokeID - 1;
     if (!pokemonIdArray.includes(previousPokeID)) {
-        await getOnePokemonIdNameType(previousPokeID);
+        await getOnePokemonType(previousPokeID);
         await renderOnePokemonCard(previousPokeID);
     };
     await renderPokemonOverlay(previousPokeID);
@@ -180,7 +196,7 @@ async function renderNextPokemonOverlay(pokeID) {
     };
     const nextPokeID = pokeID + 1;
     if (!pokemonIdArray.includes(nextPokeID)) {
-        await getOnePokemonIdNameType(nextPokeID);
+        await getOnePokemonType(nextPokeID);
         await renderOnePokemonCard(nextPokeID);
     };
     await renderPokemonOverlay(nextPokeID);
