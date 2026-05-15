@@ -70,6 +70,10 @@ header > div {
     gap: 8px;
 }
 
+header > div > span {
+    text-align: left;
+}
+
 header > div > img,
 footer > a > img {
     padding: 8px 0;

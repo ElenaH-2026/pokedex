@@ -18,7 +18,16 @@ function templateLoadMoreButton(loadingAmount) {
     return `
         <button onclick="loadMorePokemon()"
             class="btn-load-more">
-            Load ${loadingAmount} more
+            Load
+        </button>
+        <input id="#LoadingAmount" class="input-loading-amount" 
+            type="number" name="loading amount" 
+            value=${loadingAmount} required
+            onkeyup="changeLoadingAmount()"
+            onkeydown="pressKeyEnter(event)">
+        <button onclick="loadMorePokemon()"
+            class="btn-load-more">
+            more
         </button>`
 }
 

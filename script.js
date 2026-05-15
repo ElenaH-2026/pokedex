@@ -1,17 +1,17 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const MAX_AMOUNT = 1025;
-let loadingAmount = 20;
+let loadingAmount = 5;
 const pokemonIdArray = [];
 const pokemonDataFetched = {};
 const pokemonImageCache = {};
 
 async function init() {
-    // lodingspinner start
+    await document.getElementById('#LoadingSpinner').classList.remove("d-none");
     await getPokemonsIdName(start=1, end=loadingAmount);
     await getPokemonsType(start=1, end=loadingAmount);
     await renderPokemonCards(pokemonIdArray);
     await renderLoadMoreButton(loadingAmount);
-    // lodingspinner end
+    await document.getElementById('#LoadingSpinner').classList.add("d-none");
     await getPokemonsIdName(start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount))
 }
 
@@ -62,7 +62,7 @@ async function renderOnePokemonCard(pokeID) {
     let type2 = (types.length == 2) ? types[1] : type1;
     const pokeImage = await pushPokemonImageToCache(pokeID, name, type1, type2);
     
-    document.getElementById('#PokemonList').innerHTML += await templatePokemonCard (pokeID, name);
+    document.getElementById('#PokemonList').innerHTML += await templatePokemonCard(pokeID, name);
     document.getElementById(`#Image${pokeID}`).appendChild(pokeImage);
     await renderPokemonTypes(pokeID, types, '#Types');
 }
@@ -94,9 +94,11 @@ function pushPokemonImageToCache(pokeID, name, type1, type2) {
 
 async function loadMorePokemon() {
     await removeLoadMoreButton();
+    await document.getElementById('#LoadingSpinner').classList.remove("d-none");
     const missingAmount = MAX_AMOUNT - pokemonIdArray.length;
     const loading = (loadingAmount < missingAmount) ? loadingAmount : missingAmount;
     await checkForLoadingGap(loading);
+    await document.getElementById('#LoadingSpinner').classList.add("d-none");
     await checkForLoadMoreButton();
 }
 
@@ -154,6 +156,7 @@ function pressKeyEnter(event) {
     let key = event.key;
     if (key == "Enter") {
         changeLoadingAmount();
+        loadMorePokemon();
     };
 }
 
