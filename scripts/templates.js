@@ -58,7 +58,7 @@ function templatePokemonOverlay(pokeID, name, type1, type2) {
             <img style="filter: drop-shadow(-12px 12px 12px var(--${type1})) drop-shadow(12px -12px 12px var(--${type2}))"
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png" 
                 alt="${name}">
-            <div>
+            <div class="overlay-types-container">
                 <button onclick="renderPreviousOrNextPokemonOverlay(${pokeID}, 'previous')"
                     id="#ButtonPreviousPokemon"
                     class="btn-icon btn-reverse">
@@ -73,5 +73,22 @@ function templatePokemonOverlay(pokeID, name, type1, type2) {
                     alt="next Pokémon">
                 </button>
             </div>
+            <div>
+                
+                <ul id="#EvolutionChain${pokeID}"
+                    class="evolution-chain">
+                </ul>
+                <h4 class="border-big">Evolution Chain</h4>
+            </div>
         </section>`
+}
+
+function templateEvolutionChain(chainPokeID, name, type1, type2) {
+    return `
+        <li>
+            <h4>${name}</h4>
+            <img style="filter: drop-shadow(-4px 4px 4px var(--${type1})) drop-shadow(4px -4px 4px var(--${type2}))"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${chainPokeID}.png" 
+                alt="${name}">
+        </li>`
 }

@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-weight: 500;
 }
 
@@ -23,6 +23,13 @@ h2, h3 {
 
 h3 {
     justify-self: center;
+    padding: 8px 24px;
+    width: fit-content;
+}
+
+h4 {
+    justify-self: center;
+    font-size: 24px;
     padding: 8px 24px;
     width: fit-content;
 }
@@ -154,27 +161,118 @@ main {
 }
 
 .pokemon-overlay > section {
+    margin-bottom: 24px;
     width: 100%;
 }
 
 .pokemon-overlay > section > img {
-    margin: 16px 0;
+    height: 450px;
 }
 
-.pokemon-overlay > section > div {
+.overlay-types-container {
     display: flex;
     justify-content: space-between;
     padding: 8px 24px;
     height: 42px;
 }
 
-.pokemon-overlay > section > div > div {
+.overlay-types-container > div {
     justify-self: center;
     width: 100%;
+}
+
+.evolution-chain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    gap: 80px;
+    height: 300px;
+}
+
+.evolution-chain > li > img {
+    width: 200px;
+}
+
+@media screen and (max-width: 1279px) {
+    .evolution-chain {
+        gap: 60px;
+        height: 280px;
+    }
+
+    .evolution-chain > li > img {
+        width: 180px;
+    }
 }
 
 @media screen and (max-width: 768px) {
     header > div > label {
         display: none;
+    }
+
+    .pokemon-overlay > section > img {
+        height: 400px;
+    }
+
+    .evolution-chain {
+        justify-self: center;
+        justify-content: space-between;
+        gap: 0;
+        height: 250px;
+    }
+
+    .evolution-chain > li > img {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    .pokemon-overlay > section > img {
+        height: 350px;
+    }
+
+    .evolution-chain {
+        padding: 0 20px;
+        height: 200px;
+    }
+
+    .evolution-chain > li > img {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h4 {
+        font-size: 16px;
+        padding: 8px 8x;
+    }
+
+    .pokemon-overlay > section > img {
+        height: 240px;
+    }
+
+    .overlay-types-container > div {
+        display: none;
+    }
+
+    .evolution-chain {
+        padding: 0 8px;
+        height: 100px;
+    }
+
+    .evolution-chain > li > h4 {
+        display: none;
+    }
+
+    .evolution-chain > li > img {
+        width: 60%;
     }
 }

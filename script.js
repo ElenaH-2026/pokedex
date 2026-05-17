@@ -48,7 +48,6 @@ async function getOnePokemonType(pokeID) {
     const response = await fetch(`${BASE_URL}/pokemon/${pokeID}`);
     const responseToJson = await response.json();       
     const types = [];
-
     for (let indexType = 0; indexType < responseToJson.types.length; indexType++) {
         types.push(responseToJson.types[indexType].type.name);
     }
@@ -274,12 +273,15 @@ function hideButtonPreviousNextPokemon() {
 }
 
 async function renderPokemonOverlay(pokeID) {
+
     const name = pokemonDataFetched[pokeID].name;
     const types = pokemonDataFetched[pokeID].types;
     const type1 = types[0];
     let type2 = (types.length == 2) ? types[1] : type1;
     document.getElementById('#PokemonOverlay').innerHTML = await templatePokemonOverlay(pokeID, name, type1, type2);
     await renderPokemonTypes(pokeID, types, '#TypesOverlay');
+    await renderEvolutionChain(pokeID);
+
 }
 
 async function renderPreviousOrNextPokemonOverlay(pokeID, direction) {
@@ -312,22 +314,52 @@ function closeDialog() {
     document.getElementById('#Dialog').close();
 }
 
+// evolution chain functions
+
+async function renderEvolutionChain(pokeID) {
+    await checkEvolutionChainLoaded(pokeID);
+    if (pokemonDataFetched[pokeID].evolutionChain.length == 1) {
+        document.getElementById(`#EvolutionChain${pokeID}`).innerHTML = 'This Pokémon has no evolution chain.';
+    } else {
+        for (let i = 0; i < pokemonDataFetched[pokeID].evolutionChain.length; i++) {
+            const chainPokeID = pokemonDataFetched[pokeID].evolutionChain[i];
+            const name = pokemonDataFetched[chainPokeID].name;
+            const types = pokemonDataFetched[chainPokeID].types;
+            const type1 = types[0];
+            let type2 = (types.length == 2) ? types[1] : type1;
+            // const pokeImage = await pushPokemonImageToCache(chainPokeID, name, type1, type2);
+            document.getElementById(`#EvolutionChain${pokeID}`).innerHTML += templateEvolutionChain(chainPokeID, name, type1, type2);
+        }
+    }
+    
+}
+
+async function checkEvolutionChainLoaded(pokeID) {
+    if (!pokemonDataFetched[pokeID].hasOwnProperty("evolutionChain")) {
+        await getEvolutionChain(pokeID);}
+}
+
 async function getEvolutionChain(pokeID) {
     const response = await fetch(`${BASE_URL}/pokemon-species/${pokeID}`);
     const responseToJson = await response.json();  
     const evolutionResponse = await fetch(responseToJson.evolution_chain.url)
     const evolutionToJson = await evolutionResponse.json();  
-    await addEvolutionDataToPokemonData(evolutionToJson);
+    await addEvolutionDataToPokemonData(pokeID, evolutionToJson);
 }
 
-async function addEvolutionDataToPokemonData(evolutionToJson) {
+async function addEvolutionDataToPokemonData(pokeID, evolutionToJson) {
     const evolutionChain = [];
-    let evolutionStep = parseInt(evolutionToJson.chain.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
-    await evolutionChain.push(evolutionStep);
-    await console.log(evolutionChain); 
-    if (evolutionToJson.chain.evolves_to[0].hasOwnProperty("species")) {
-        evolutionStep = parseInt(evolutionToJson.chain.evolves_to[0].species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
-        await evolutionChain.push(evolutionStep);
-        await console.log(evolutionChain); 
-    } 
+    const base = parseInt(evolutionToJson.chain.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
+    await evolutionChain.push(base);
+
+    if (evolutionToJson.chain.evolves_to.length > 0) {
+        const stage1 = parseInt(evolutionToJson.chain.evolves_to[0].species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
+        await evolutionChain.push(stage1);
+    
+        if (evolutionToJson.chain.evolves_to[0].evolves_to.length > 0) {
+            const stage2 = parseInt(evolutionToJson.chain.evolves_to[0].evolves_to[0].species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
+            await evolutionChain.push(stage2);
+        }
+    }
+    pokemonDataFetched[pokeID].evolutionChain = evolutionChain;
 }
