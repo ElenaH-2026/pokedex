@@ -24,10 +24,18 @@ function templateLoadMoreButton(loadingAmount) {
             type="number" name="loading amount" 
             value=${loadingAmount} required
             onkeyup="changeLoadingAmount()"
-            onkeydown="pressKeyEnter(event)">
+            onkeydown="pressKeyEnterForChangeLoadingAmount(event)">
         <button onclick="loadMorePokemon()"
             class="btn-load-more">
             more
+        </button>`
+}
+
+function templateShowAllLoadedPokemonButton() {
+    return `
+        <button onclick="showAllLoadedPokemon()"
+            class="btn-load-more">
+            Show all loadeded Pokémon
         </button>`
 }
 
@@ -51,14 +59,14 @@ function templatePokemonOverlay(pokeID, name, type1, type2) {
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png" 
                 alt="${name}">
             <div>
-                <button onclick="renderPreviousPokemonOverlay(${pokeID})"
+                <button onclick="renderPreviousOrNextPokemonOverlay(${pokeID}, 'previous')"
                     id="#ButtonPreviousPokemon"
                     class="btn-icon btn-reverse">
                     <img src="./assets/icons/arrow-back.svg" 
                     alt="previous Pokémon">
                 </button>
                 <div id="#TypesOverlay${pokeID}"></div>
-                <button onclick="renderNextPokemonOverlay(${pokeID})"
+                <button onclick="renderPreviousOrNextPokemonOverlay(${pokeID}, 'next')"
                     id="#ButtonNextPokemon"
                     class="btn-icon">
                     <img src="./assets/icons/arrow-forward.svg" 

@@ -25,7 +25,7 @@
                 <input id="#Search" class="input-search" 
                     type="search" name="search" 
                     minlength="3" placeholder="min 3 lts" required>
-                <button onclick="searchForPokemon()"
+                <button onclick="checkSearchInput()"
                     type="submit" class="btn-icon">
                     <img src="./assets/icons/search.svg" 
                         alt="search for Pokémon">
@@ -41,6 +41,9 @@
         <ul id="#PokemonList"
             class="container-pokemon-cards">
         </ul>
+        <div id="#NoPokemonsFound">
+
+        </div>
         <div id="#LoadMoreButton"
             class="container-load-more-button">
         </div>
