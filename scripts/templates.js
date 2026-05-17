@@ -41,6 +41,10 @@ function templatePokemonOverlay(pokeID, name, type1, type2) {
                 alt="close overlay">
             </button>
         </header>
+        <img id="#LoadingSpinnerOverlay"
+            class="d-none"
+            src="./assets/icons/pokeball-green.svg" 
+            alt="Poké Ball"> 
         <section>
             <h3 class="border-big">${name}</h3>
             <img style="filter: drop-shadow(-12px 12px 12px var(--${type1})) drop-shadow(12px -12px 12px var(--${type2}))"
@@ -48,12 +52,14 @@ function templatePokemonOverlay(pokeID, name, type1, type2) {
                 alt="${name}">
             <div>
                 <button onclick="renderPreviousPokemonOverlay(${pokeID})"
+                    id="#ButtonPreviousPokemon"
                     class="btn-icon btn-reverse">
                     <img src="./assets/icons/arrow-back.svg" 
                     alt="previous Pokémon">
                 </button>
                 <div id="#TypesOverlay${pokeID}"></div>
                 <button onclick="renderNextPokemonOverlay(${pokeID})"
+                    id="#ButtonNextPokemon"
                     class="btn-icon">
                     <img src="./assets/icons/arrow-forward.svg" 
                     alt="next Pokémon">

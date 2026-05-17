@@ -49,5 +49,9 @@ dialog {
     justify-self: center;
     align-self: center;
     border: none;
-    width: min(100%, 800px);
+    width: min(100%, 900px);
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
 }

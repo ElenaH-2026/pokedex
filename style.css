@@ -165,6 +165,12 @@ main {
     display: flex;
     justify-content: space-between;
     padding: 8px 24px;
+    height: 42px;
+}
+
+.pokemon-overlay > section > div > div {
+    justify-self: center;
+    width: 100%;
 }
 
 @media screen and (max-width: 768px) {
