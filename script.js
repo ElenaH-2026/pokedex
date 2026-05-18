@@ -1,6 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2";
 const MAX_AMOUNT = 1025;
-let loadingAmount = 20;
+let loadingAmount = 5;
 let allNamesLoaded = false;
 const pokemonDataFetched = {};
 const pokemonImageCache = {};
@@ -8,30 +8,26 @@ const renderedPokemon = [];
 
 async function init() {
     await document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
-    await getPokemonsId(start=1, end=loadingAmount);
-    await getPokemonsName(start=1, end=loadingAmount);
-    await getPokemonsType(start=1, end=loadingAmount);
+    await getPokemonsData("Id", start=1, end=loadingAmount);
+    await getPokemonsData("Name", start=1, end=loadingAmount);
+    await getPokemonsData("Type", start=1, end=loadingAmount);
     await renderPokemonCards(Object.keys(pokemonDataFetched).map(pokeID => Number(pokeID)));
     await renderLoadMoreButton(loadingAmount);
-    await getPokemonsId(start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount));
+    await getPokemonsData("Id", start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount));
     await document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
 }
 
 // init functions:
 
-function getPokemonsId(start, end) {
+async function getPokemonsData(data, start, end) {
     for (let pokeID = start; (pokeID < (start + end)) && (pokeID <= MAX_AMOUNT); pokeID++) {
-        getOnePokemonId(pokeID);}
-}
-
-function getPokemonsName(start, end) {
-    for (let pokeID = start; (pokeID < (start + end)) && (pokeID <= MAX_AMOUNT); pokeID++) {
-        getOnePokemonName(pokeID);}
-}
-
-async function getPokemonsType(start, end) {
-    for (let pokeID = start; (pokeID < (start + end)) && (pokeID <= MAX_AMOUNT); pokeID++) {
-        await getOnePokemonType(pokeID);}
+        if (data == "Id") {
+            await getOnePokemonId(pokeID);}
+        if (data == "Name") {
+            await getOnePokemonName(pokeID);}
+        if (data == "Type") {
+            await getOnePokemonType(pokeID);}
+    }
 }
 
 function getOnePokemonId(pokeID) {
@@ -40,16 +36,15 @@ function getOnePokemonId(pokeID) {
 
 async function getOnePokemonName(pokeID) {
     const response = await fetch(`${BASE_URL}/pokemon/${pokeID}`);
-    const responseToJson = await response.json();       
+    const responseToJson = await response.json();
+    pokemonDataFetched[pokeID].responsePokemon = responseToJson;
     pokemonDataFetched[pokeID].name = responseToJson.name.charAt(0).toUpperCase() + responseToJson.name.slice(1);
 }
 
-async function getOnePokemonType(pokeID) {
-    const response = await fetch(`${BASE_URL}/pokemon/${pokeID}`);
-    const responseToJson = await response.json();       
+async function getOnePokemonType(pokeID) {  
     const types = [];
-    for (let indexType = 0; indexType < responseToJson.types.length; indexType++) {
-        types.push(responseToJson.types[indexType].type.name);
+    for (let indexType = 0; indexType < pokemonDataFetched[pokeID].responsePokemon.types.length; indexType++) {
+        types.push(pokemonDataFetched[pokeID].responsePokemon.types[indexType].type.name);
     }
     pokemonDataFetched[pokeID].types = types;
 }
