@@ -24,7 +24,7 @@ function templateLoadMoreButton(loadingAmount) {
             type="number" name="loading amount" 
             value=${loadingAmount} required
             onkeyup="changeLoadingAmount()"
-            onkeydown="pressKeyEnterForChangeLoadingAmount(event)">
+            onkeydown="pressEnter(event, 'loadMore')">
         <button onclick="loadMorePokemon()"
             class="btn-load-more">
             more
@@ -74,7 +74,6 @@ function templatePokemonOverlay(pokeID, name, type1, type2) {
                 </button>
             </div>
             <div>
-                
                 <ul id="#EvolutionChain${pokeID}"
                     class="evolution-chain">
                 </ul>
@@ -87,7 +86,9 @@ function templateEvolutionChain(chainPokeID, name, type1, type2) {
     return `
         <li>
             <h4>${name}</h4>
-            <img style="filter: drop-shadow(-4px 4px 4px var(--${type1})) drop-shadow(4px -4px 4px var(--${type2}))"
+            <img onclick="showDialog(${chainPokeID})"
+                role="button"
+                style="filter: drop-shadow(-4px 4px 4px var(--${type1})) drop-shadow(4px -4px 4px var(--${type2}))"
                 src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${chainPokeID}.png" 
                 alt="${name}">
         </li>`

@@ -192,6 +192,7 @@ main {
 
 .evolution-chain > li > img {
     width: 200px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1279px) {
