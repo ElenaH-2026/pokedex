@@ -30,8 +30,8 @@ async function getPokemonsData(data, start, end) {
     }
 }
 
-function getOnePokemonId(pokeID) {
-    pokemonDataFetched[pokeID] = {};
+async function getOnePokemonId(pokeID) {
+    pokemonDataFetched[pokeID] = await {};
 }
 
 async function getOnePokemonName(pokeID) {
@@ -201,6 +201,7 @@ async function showAllLoadedPokemon() {
 
 async function loadMorePokemon() {
     await document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
+    loadingAmount = parseInt(document.getElementById('#LoadingAmount').value);
     const missingAmount = MAX_AMOUNT - renderedPokemon.length;
     const loading = (loadingAmount < missingAmount) ? loadingAmount : missingAmount;
     await removeLoadMoreShowAllButton();
@@ -237,8 +238,8 @@ async function renderLoadingRequest(start, loading) {
     const toRender = [];
     for (let i = 0; i < loading; i++) {
         await toRender.push(start + i);}
-    await getPokemonsName(start, loading);
-    await getPokemonsType(start, loading);
+    await getPokemonsData("Name", start, loading);
+    await getPokemonsData("Type", start, loading);
     await renderPokemonCards(toRender);
 }
 
@@ -261,11 +262,6 @@ function renderLoadMoreButton(loadingAmount) {
 function renderMessageMaxAmount() {
     document.getElementById('#LoadMoreButton').innerHTML = 
         `You have already loaded all ${MAX_AMOUNT} Pokémon.`;
-}
-
-async function changeLoadingAmount(event) {
-    loadingAmount = parseInt(document.getElementById('#LoadingAmount').value);
-    await checkForLoadMoreButton();
 }
 
 // overlay functions:
