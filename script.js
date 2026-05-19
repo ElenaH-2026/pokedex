@@ -8,25 +8,31 @@ const renderedPokemon = [];
 
 async function init() {
     document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
-    await getPokemonsData("Id", start=1, end=loadingAmount);
-    await getPokemonsData("Name", start=1, end=loadingAmount);
-    await getPokemonsData("Type", start=1, end=loadingAmount);
+    await getPokemonsData("id", start=1, end=loadingAmount);
+    await getPokemonsData("name", start=1, end=loadingAmount);
+    await getPokemonsData("type", start=1, end=loadingAmount);
     await renderPokemonCards(Object.keys(pokemonDataFetched).map(pokeID => Number(pokeID)));
+    document.getElementById('#PokemonList').classList.add("d-flex");
     await renderLoadMoreButton(loadingAmount);
-    await getPokemonsData("Id", start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount));
     document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
+    await getPokemonsData("id", start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount));
+    await getPokemonsData("name", start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount));
 }
 
 // init functions:
 
 async function getPokemonsData(data, start, end) {
     for (let pokeID = start; (pokeID < (start + end)) && (pokeID <= MAX_AMOUNT); pokeID++) {
-        if (data == "Id") {
+        if (data == "id") {
             await getOnePokemonId(pokeID);}
-        if (data == "Name") {
-            await getOnePokemonName(pokeID);}
-        if (data == "Type") {
-            await getOnePokemonType(pokeID);}
+        if (data == "name") {
+            if (checkPokemonDataIsLoaded(data, pokeID) == false) {
+                await getOnePokemonName(pokeID);}
+            }
+        if (data == "type") {
+            if (checkPokemonDataIsLoaded(data, pokeID) == false) {
+                await getOnePokemonType(pokeID);}
+            }
     }
 }
 
@@ -103,10 +109,14 @@ function sortRenderedPokemon() {
     renderedPokemon.sort((a, b) => a-b);
 }
 
-async function checkPokemonRendered(pokeID) {
-    if (!renderedPokemon.includes(pokeID)) {
-        await getAndRenderOnePokemonCard(pokeID);}
+function checkPokemonDataIsLoaded(data, pokeID) {
+    return pokemonDataFetched[pokeID].hasOwnProperty(data) ? true : false;
 }
+
+// async function checkPokemonRendered(pokeID) {
+//     if (!renderedPokemon.includes(pokeID)) {
+//         await getAndRenderOnePokemonCard(pokeID);}
+// }
 
 async function getAndRenderOnePokemonCard(pokeID) {
     await getOnePokemonName(pokeID);
@@ -238,8 +248,7 @@ async function renderLoadingRequest(start, loading) {
     const toRender = [];
     for (let i = 0; i < loading; i++) {
         await toRender.push(start + i);}
-    await getPokemonsData("Name", start, loading);
-    await getPokemonsData("Type", start, loading);
+    await getPokemonsData("type", start, loading);
     await renderPokemonCards(toRender);
 }
 
@@ -292,7 +301,7 @@ async function renderPreviousOrNextPokemonOverlay(pokeID, direction) {
     document.getElementById('#LoadingSpinnerOverlay').classList.add("loading-spinner");
     await hideButtonPreviousNextPokemon();
     if (pokeID == 1 && direction == 'previous') {
-        await checkPokemonRendered(MAX_AMOUNT);
+        // await checkPokemonRendered(MAX_AMOUNT);
         await renderPokemonOverlay(MAX_AMOUNT);
         return;
     };
@@ -301,7 +310,7 @@ async function renderPreviousOrNextPokemonOverlay(pokeID, direction) {
         return;
     }
     const newPokeID = (direction == 'next') ? pokeID + 1 : pokeID - 1;
-    await checkPokemonRendered(newPokeID);
+    // await checkPokemonRendered(newPokeID);
     await renderPokemonOverlay(newPokeID);
     document.getElementById('#LoadingSpinnerOverlay').classList.remove("loading-spinner");
 }
@@ -319,7 +328,10 @@ async function renderEvolutionChain(pokeID) {
     } else {
         for (let i = 0; i < pokemonDataFetched[pokeID].evolutionChain.length; i++) {
             const chainPokeID = pokemonDataFetched[pokeID].evolutionChain[i];
-            await checkPokemonRendered(chainPokeID);
+            if (checkPokemonDataIsLoaded("name", chainPokeID) == false) {
+                await getOnePokemonName(chainPokeID);}
+            if (checkPokemonDataIsLoaded("type", chainPokeID) == false) {
+                await getOnePokemonType(chainPokeID);}
             const name = pokemonDataFetched[chainPokeID].name;
             const types = pokemonDataFetched[chainPokeID].types;
             const type1 = types[0];
@@ -355,6 +367,10 @@ async function addEvolutionDataToPokemonData(pokeID, evolutionToJson) {
             const stage2 = parseInt(evolutionToJson.chain.evolves_to[0].evolves_to[0].species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/", ""));
             await evolutionChain.push(stage2);
         }
+    }
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
     }
     pokemonDataFetched[pokeID].evolutionChain = evolutionChain;
 }

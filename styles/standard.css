@@ -44,6 +44,10 @@
     display: none;
 }
 
+.d-flex {
+    display: flex;
+}
+
 dialog {
     background-color: transparent;
     justify-self: center;

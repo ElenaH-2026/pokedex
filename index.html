@@ -40,7 +40,7 @@
             alt="Poké Ball">      
         <h1>Elenas Pokédex</h1>
         <ul id="#PokemonList"
-            class="container-pokemon-cards">
+            class="container-pokemon-cards d-none">
         </ul>
         <div id="#NoPokemonsFound">
 
@@ -58,7 +58,8 @@
     </main>
     <footer class="wrapper border-big">
         <a href="##PageStart">
-            <img src="./assets/icons/pokeball-green.svg" 
+            <img onclick="showAllLoadedPokemon()"
+                src="./assets/icons/pokeball-green.svg" 
                 alt="to the start of the page">
         </a>
     </footer>
