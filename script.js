@@ -7,14 +7,14 @@ const pokemonImageCache = {};
 const renderedPokemon = [];
 
 async function init() {
-    await document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
+    document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
     await getPokemonsData("Id", start=1, end=loadingAmount);
     await getPokemonsData("Name", start=1, end=loadingAmount);
     await getPokemonsData("Type", start=1, end=loadingAmount);
     await renderPokemonCards(Object.keys(pokemonDataFetched).map(pokeID => Number(pokeID)));
     await renderLoadMoreButton(loadingAmount);
     await getPokemonsData("Id", start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount));
-    await document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
+    document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
 }
 
 // init functions:
@@ -133,7 +133,7 @@ function pressEnter(event, task) {
 // search functions:
 
 async function checkSearchInput() {
-    await document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
+    document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
     const searchInput = document.getElementById('#Search').value.trim().split(" ").join("").toLowerCase();
     await clearPokemonList();
     if (searchInput.length >= 3) {
@@ -143,7 +143,7 @@ async function checkSearchInput() {
     }
     await renderShowAllLoadedPokemonButton();
     document.getElementById('#Search').value = "";
-    await document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
+    document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
 }
 
 async function searchForPokemon(searchInput) {
@@ -187,27 +187,27 @@ async function loadAllPokemonsName() {
 }
 
 async function showAllLoadedPokemon() {
-    await document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
+    document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
     await removeLoadMoreShowAllButton();
     await clearPokemonList();
     await clearMessageMinLetters();
     await sortRenderedPokemon();
     await renderPokemonCards(renderedPokemon);
     await checkForLoadMoreButton();
-    await document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
+    document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
 }
 
 // load more functions:
 
 async function loadMorePokemon() {
-    await document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
+    document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
     loadingAmount = parseInt(document.getElementById('#LoadingAmount').value);
     const missingAmount = MAX_AMOUNT - renderedPokemon.length;
     const loading = (loadingAmount < missingAmount) ? loadingAmount : missingAmount;
     await removeLoadMoreShowAllButton();
     await checkForLoadingGap(loading);
     await checkForLoadMoreButton();
-    await document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");   
+    document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");   
 }
 
 async function checkForLoadingGap(loading) {
@@ -282,14 +282,14 @@ async function renderPokemonOverlay(pokeID) {
     const type1 = types[0];
     let type2 = (types.length == 2) ? types[1] : type1;
     document.getElementById('#PokemonOverlay').innerHTML = await templatePokemonOverlay(pokeID, name, type1, type2);
-    await document.getElementById('#LoadingSpinnerOverlay').classList.add("loading-spinner");
+    document.getElementById('#LoadingSpinnerOverlay').classList.add("loading-spinner");
     await renderPokemonTypes(pokeID, types, '#TypesOverlay');
     await renderEvolutionChain(pokeID);
-    await document.getElementById('#LoadingSpinnerOverlay').classList.remove("loading-spinner");
+    document.getElementById('#LoadingSpinnerOverlay').classList.remove("loading-spinner");
 }
 
 async function renderPreviousOrNextPokemonOverlay(pokeID, direction) {
-    await document.getElementById('#LoadingSpinnerOverlay').classList.add("loading-spinner");
+    document.getElementById('#LoadingSpinnerOverlay').classList.add("loading-spinner");
     await hideButtonPreviousNextPokemon();
     if (pokeID == 1 && direction == 'previous') {
         await checkPokemonRendered(MAX_AMOUNT);
@@ -303,7 +303,7 @@ async function renderPreviousOrNextPokemonOverlay(pokeID, direction) {
     const newPokeID = (direction == 'next') ? pokeID + 1 : pokeID - 1;
     await checkPokemonRendered(newPokeID);
     await renderPokemonOverlay(newPokeID);
-    await document.getElementById('#LoadingSpinnerOverlay').classList.remove("loading-spinner");
+    document.getElementById('#LoadingSpinnerOverlay').classList.remove("loading-spinner");
 }
 
 function closeDialog() {
