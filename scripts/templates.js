@@ -34,11 +34,11 @@ function templateShowAllLoadedPokemonButton() {
     return `
         <button onclick="showAllLoadedPokemon()"
             class="btn-load-more">
-            Show all loadeded Pokémon
+            Show all loaded Pokémon
         </button>`
 }
 
-function templatePokemonOverlay(pokeID, name, type1, type2) {
+function templatePokemonOverlay(pokeID, name, type1, type2, height, weight, hp, attack, defense) {
     return `
         <header class="overlay-header">
             <span>#${pokeID}</span>
@@ -56,17 +56,19 @@ function templatePokemonOverlay(pokeID, name, type1, type2) {
             <h3 class="border-big">${name}</h3>
             <div class="pokemon-details-container-parent">
                 <div class="pokemon-details-container-child-left">
-                    <p class="border-big">height:<br><b>xx</b></p>
+                    <p class="border-big">height:<br><b>${height}</b></p>
                     <div id="#TypesOverlay${pokeID}"></div>
-                    <p class="border-big">weight:<br><b>xx</b></p>
+                    <p class="border-big">weight:<br><b>${weight}</b></p>
                 </div>
-                <img style="filter: drop-shadow(-12px 12px 12px var(--${type1})) drop-shadow(12px -12px 12px var(--${type2}))"
-                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png" 
-                    alt="${name}">
+                <div class="pokemon-details-container-child-img">
+                    <img style="filter: drop-shadow(-12px 12px 12px var(--${type1})) drop-shadow(12px -12px 12px var(--${type2}))"
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeID}.png" 
+                        alt="${name}">
+                </div>
                 <div class="pokemon-details-container-child-right">
-                    <p class="border-big">hp:<br><b>xx</b></p>
-                    <p class="border-big">attack:<br><b>xx</b></p>
-                    <p class="border-big">defense:<br><b>xx</b></p>
+                    <p class="border-big">hp:<br><b>${hp}</b></p>
+                    <p class="border-big">attack:<br><b>${attack}</b></p>
+                    <p class="border-big">defense:<br><b>${defense}</b></p>
                 </div>
             </div>
             

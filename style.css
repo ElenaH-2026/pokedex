@@ -176,18 +176,24 @@ main {
     height: 450px;
 }
 
-.pokemon-details-container-parent > img {
-    /* flex: 1; */
-    height: 100%;
+.pokemon-details-container-child-img {
+    flex: 1;
+    align-content: center;
+}
+
+.pokemon-details-container-child-img > img {
+    object-fit: contain;
+    max-width: 100%;
 }
 
 .pokemon-details-container-parent > div > p {
+    font-size: 20px;
     padding: 8px 20px;
+    width: 120px;
 }
 
 .pokemon-details-container-child-left,
 .pokemon-details-container-child-right {
-    font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -198,6 +204,7 @@ main {
 .pokemon-details-container-child-left > div {
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
 
 .overlay-arrow-container {
@@ -243,9 +250,19 @@ main {
         display: none;
     }
 
-    /* .pokemon-overlay > section > img {
+    .pokemon-details-container-parent {
         height: 400px;
-    } */
+    }
+
+    .pokemon-details-container-parent > div > p {
+        font-size: 16px;
+        width: 100px;
+    }
+
+    .pokemon-details-container-child-left,
+    .pokemon-details-container-child-right {
+        padding: 24px;
+    }
 
     .evolution-chain {
         justify-self: center;
@@ -259,22 +276,24 @@ main {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     h3 {
         font-size: 24px;
     }
 
     h4 {
-        font-size: 20px;
+        font-size: 16px;
+        padding: 8px 8px;
     }
 
-    /* .pokemon-overlay > section > img {
+    .pokemon-details-container-parent {
         height: 350px;
-    } */
+    }
 
     .evolution-chain {
         padding: 0 20px;
-        height: 200px;
+        /* height: 200px; */
+        height: auto;
     }
 
     .evolution-chain > li > img {
@@ -283,14 +302,14 @@ main {
 }
 
 @media screen and (max-width: 480px) {
-    h4 {
+    /* h4 {
         font-size: 16px;
         padding: 8px 16px;
-    }
-
-    /* .pokemon-overlay > section > img {
-        height: 240px;
     } */
+
+    .pokemon-details-container-parent {
+        height: 240px;
+    }
 
     /* .overlay-arrow-container > div {
         display: none;
@@ -298,7 +317,7 @@ main {
 
     .evolution-chain {
         padding: 0 8px;
-        height: 100px;
+        /* height: 100px; */
     }
 
     .evolution-chain > li > h4 {

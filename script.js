@@ -324,7 +324,12 @@ async function renderPokemonOverlay(pokeID) {
     const types = pokemonDataFetched[pokeID].types;
     const type1 = types[0];
     let type2 = (types.length == 2) ? types[1] : type1;
-    document.getElementById('#PokemonOverlay').innerHTML = await templatePokemonOverlay(pokeID, name, type1, type2);
+    const height = (pokemonDataFetched[pokeID].responsePokemon.height / 10).toFixed(1).toString().replace(".", ",") + " m";
+    const weight = (pokemonDataFetched[pokeID].responsePokemon.weight / 10).toFixed(1).toString().replace(".", ",") + " kg";
+    const hp = pokemonDataFetched[pokeID].responsePokemon.stats[0].base_stat;
+    const attack = pokemonDataFetched[pokeID].responsePokemon.stats[1].base_stat;
+    const defense = pokemonDataFetched[pokeID].responsePokemon.stats[2].base_stat;
+    document.getElementById('#PokemonOverlay').innerHTML = await templatePokemonOverlay(pokeID, name, type1, type2, height, weight, hp, attack, defense);
     document.getElementById('#LoadingSpinnerOverlay').classList.add("loading-spinner");
     if (!dialogArray.includes(pokeID)) {
         await hideButtonPreviousNextPokemon();
