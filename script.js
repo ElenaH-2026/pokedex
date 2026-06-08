@@ -1,7 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2";
 const MAX_AMOUNT = 1025;
-let loadingAmount = 5;
-// let allNamesLoaded = false;
+let loadingAmount = 20;
 const pokemonDataFetched = {};
 const pokemonImageCache = {};
 const renderedPokemons = [];
@@ -18,9 +17,6 @@ async function init() {
     await renderLoadMoreButton(loadingAmount);
     document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
     await getPokemonsData("id", start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount));
-    // await getPokemonsData("name", start=(loadingAmount+1), end=(MAX_AMOUNT-loadingAmount));
-    console.log(pokemonDataFetched);
-    
 }
 
 async function getPokemonsData(data, start, end) {
@@ -101,30 +97,13 @@ function renderPokemonTypes(pokeID, types, typesID) {
         document.getElementById(`${typesID}${pokeID}`).innerHTML += templatePokemonTypes(types[indexType]);}
 }
 
-// helping functions:
-
 function clearPokemonList() {
     document.getElementById('#PokemonList').innerHTML = "";
 }
 
-// function sortrenderedPokemons() {
-//     renderedPokemons.sort((a, b) => a-b);
-// }
-
 function checkPokemonDataIsLoaded(data, pokeID) {
     return pokemonDataFetched[pokeID].hasOwnProperty(data) ? true : false;
 }
-
-// async function checkPokemonRendered(pokeID) {
-//     if (!renderedPokemons.includes(pokeID)) {
-//         await getAndRenderOnePokemonCard(pokeID);}
-// }
-
-// async function getAndRenderOnePokemonCard(pokeID) {
-//     await getOnePokemonName(pokeID);
-//     await getOnePokemonType(pokeID);
-//     await renderOnePokemonCard(pokeID);
-// }
 
 function checkForLoadMoreButton() {
     (renderedPokemons.length < MAX_AMOUNT) ? renderLoadMoreButton(loadingAmount) : renderMessageMaxAmount();
@@ -141,8 +120,6 @@ function pressEnter(event, task) {
         }
     }
 }
-
-// search functions:
 
 async function checkSearchInput() {
     document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
@@ -161,9 +138,7 @@ async function checkSearchInput() {
 
 async function searchForPokemon(searchInput) {
     searchedPokemons = [];
-    // await removeLoadMoreShowAllButton();
     await clearMessageMinLetters();
-    // await checkAllPokemonsNameLoaded();
     for (let pokeID = 1; pokeID <= renderedPokemons.length; pokeID++) {
         if (pokemonDataFetched[pokeID].name.toLowerCase().includes(searchInput)) {
             await searchedPokemons.push(pokeID);
@@ -173,26 +148,6 @@ async function searchForPokemon(searchInput) {
     };
     (searchedPokemons.length > 0) ? await renderPokemonCards(searchedPokemons) : await renderMassageNoPokemonsFound(searchInput);
 }
-
-// async function searchForPokemon(searchInput) {
-//     const searchArrayIDs = [];
-//     await removeLoadMoreShowAllButton();
-//     await clearMessageMinLetters();
-//     await checkAllPokemonsNameLoaded();
-//     for (let pokeID = 1; pokeID <= MAX_AMOUNT; pokeID++) {
-//         if (pokemonDataFetched[pokeID].name.toLowerCase().includes(searchInput)) {
-//             await searchArrayIDs.push(pokeID);
-//             if (!pokemonDataFetched[pokeID].hasOwnProperty("types")) {
-//                 await getOnePokemonType(pokeID);}
-//         }
-//     };
-//     (searchArrayIDs.length > 0) ? await renderPokemonCards(searchArrayIDs) : await renderMassageNoPokemonsFound(searchInput);
-// }
-
-// async function checkAllPokemonsNameLoaded() {
-//     if (!allNamesLoaded) {
-//         await loadAllPokemonsName();}
-// }
 
 function renderMassageNoPokemonsFound(searchInput) {
     document.getElementById('#NoPokemonsFound').innerHTML = `Sorry, there are no Pokémon with "${searchInput}"!`;
@@ -206,27 +161,16 @@ function clearMessageMinLetters() {
     document.getElementById('#NoPokemonsFound').innerHTML = ``;
 }
 
-// async function loadAllPokemonsName() {
-//     for (let pokeID = 1; pokeID <= MAX_AMOUNT; pokeID++) {
-//         if (!pokemonDataFetched[pokeID].hasOwnProperty("name")) {
-//             await getOnePokemonName(pokeID);}
-//     };
-//     allNamesLoaded = true;
-// }
-
 async function showAllLoadedPokemon() {
     document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
     searchedPokemons = [];
     await removeLoadMoreShowAllButton();
     await clearPokemonList();
     await clearMessageMinLetters();
-    // await sortrenderedPokemons();
     await renderPokemonCards(renderedPokemons);
     await checkForLoadMoreButton();
     document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");
 }
-
-// load more functions:
 
 async function loadMorePokemon() {
     document.getElementById('#LoadingSpinner').classList.add("loading-spinner");
@@ -235,7 +179,6 @@ async function loadMorePokemon() {
     const loading = (loadingAmount < missingAmount) ? loadingAmount : missingAmount;
     await removeLoadMoreShowAllButton();
     await renderLoadingRequest(renderedPokemons.length+1, loading)
-    // await checkForLoadingGap(loading);
     await checkForLoadMoreButton();
     document.getElementById('#LoadingSpinner').classList.remove("loading-spinner");   
 }
@@ -248,43 +191,6 @@ async function renderLoadingRequest(start, loading) {
     await getPokemonsData("type", start, loading);
     await renderPokemonCards(toRender);
 }
-
-// async function checkForLoadingGap(loading) {
-//     await sortrenderedPokemons();
-//     if (renderedPokemons[renderedPokemons.length-1] == renderedPokemons.length) {
-//         const start = renderedPokemons.length+1;
-//         await renderLoadingRequest(start, loading);
-//         return;
-//     }
-//     for (let index = 1; index < renderedPokemons.length; index++) {
-//         const gap = renderedPokemons[index] - renderedPokemons[index-1];
-//         if (gap == 1) {
-//             continue;
-//         }
-//         if (gap > 1 && gap > loading) {
-//             const start = renderedPokemons[index-1]+1;
-//             await renderLoadingRequest(start, loading);
-//             return;
-//         }
-//         if (gap > 1 && gap < loading) {
-//             const start = renderedPokemons[index-1]+1;
-//             const missingLoading = loading - (gap-1);
-//             await renderLoadingRequest(start, gap-1)
-//             checkForLoadingGap(missingLoading);
-//             return;
-//         }
-//     }
-// }
-
-// async function renderLoadingRequest(start, loading) {
-//     const toRender = [];
-//     for (let i = 0; i < loading; i++) {
-//         await toRender.push(start + i);}
-//     await getPokemonsData("type", start, loading);
-//     await renderPokemonCards(toRender);
-// }
-
-// load more button functions:
 
 function removeLoadMoreShowAllButton() {
     document.getElementById('#LoadMoreButton').innerHTML = "";
@@ -305,13 +211,10 @@ function renderMessageMaxAmount() {
         `You have already loaded all ${MAX_AMOUNT} Pokémon.`;
 }
 
-// overlay functions:
-
 function showDialog(pokeID) {
     document.getElementById('#Dialog').showModal();
     dialogArray = (searchedPokemons.length == 0) ? renderedPokemons : searchedPokemons;
     renderPokemonOverlay(pokeID);
-    // renderPokemonOverlay(pokeID, '#TypesOverlay');
 }
 
 function hideButtonPreviousNextPokemon() {
@@ -335,6 +238,7 @@ async function renderPokemonOverlay(pokeID) {
         await hideButtonPreviousNextPokemon();
     }
     await renderPokemonTypes(pokeID, types, '#TypesOverlay');
+    await renderPokemonTypes(pokeID, types, '#TypesOverlayMobile');
     await renderEvolutionChain(pokeID);
     document.getElementById('#LoadingSpinnerOverlay').classList.remove("loading-spinner");
 }
@@ -343,7 +247,6 @@ async function renderPreviousOrNextPokemonOverlay(pokeID, direction) {
     document.getElementById('#LoadingSpinnerOverlay').classList.add("loading-spinner");
     await hideButtonPreviousNextPokemon();
     if (pokeID == dialogArray[0] && direction == 'previous') {
-        // await checkPokemonRendered(MAX_AMOUNT);
         await renderPokemonOverlay(dialogArray[dialogArray.length-1]);
         return;
     };
@@ -353,7 +256,6 @@ async function renderPreviousOrNextPokemonOverlay(pokeID, direction) {
     }
     const indexCurrentPokeID = dialogArray.indexOf(pokeID);
     const newPokeID = (direction == 'next') ? dialogArray[indexCurrentPokeID + 1] : dialogArray[indexCurrentPokeID - 1];
-    // await checkPokemonRendered(newPokeID);
     await renderPokemonOverlay(newPokeID);
     document.getElementById('#LoadingSpinnerOverlay').classList.remove("loading-spinner");
 }
@@ -361,8 +263,6 @@ async function renderPreviousOrNextPokemonOverlay(pokeID, direction) {
 function closeDialog() {
     document.getElementById('#Dialog').close();
 }
-
-// evolution chain functions
 
 async function renderEvolutionChain(pokeID) {
     await checkEvolutionChainLoaded(pokeID);
