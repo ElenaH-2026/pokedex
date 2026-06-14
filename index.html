@@ -22,18 +22,20 @@
             </div>
             <div>
                 <label for="#Search">Search Pokémon:</label>
-                <input id="#Search" class="input-search" 
+                <input data-id="search-input" 
+                    id="#Search" class="input-search" 
                     type="search" name="search" 
                     minlength="3" placeholder="min 3 lts" required
                     onkeyup="pressEnter(event, 'search')">
-                <button onclick="checkSearchInput()"
+                <button data-id="search-button"
+                    onclick="checkSearchInput()"
                     type="submit" class="btn-icon">
                     <img src="./assets/icons/search.svg" 
                         alt="search for Pokémon">
                 </button>
             </div>
     </header>
-    <main id="#PageStart" class="wrapper">
+    <main data-id="content" id="#PageStart" class="wrapper">
         <img id="#LoadingSpinner"
             class="d-none"
             src="./assets/icons/pokeball-green.svg" 
@@ -47,8 +49,9 @@
             class="container-load-more-button">
         </div>
 
-        <dialog id="#Dialog" closedby="any">
-            <div id="#PokemonOverlay"
+        <dialog data-id="dialog" id="#Dialog" closedby="any">
+            <div data-id="overlay-pokemon"
+                id="#PokemonOverlay"
                 class="pokemon-overlay">
             </div>
         </dialog>

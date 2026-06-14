@@ -142,19 +142,17 @@ async function searchForPokemon(searchInput) {
     for (let pokeID = 1; pokeID <= renderedPokemons.length; pokeID++) {
         if (pokemonDataFetched[pokeID].name.toLowerCase().includes(searchInput)) {
             await searchedPokemons.push(pokeID);
-            // if (!pokemonDataFetched[pokeID].hasOwnProperty("types")) {
-            //     await getOnePokemonType(pokeID);}
         }
     };
     (searchedPokemons.length > 0) ? await renderPokemonCards(searchedPokemons) : await renderMassageNoPokemonsFound(searchInput);
 }
 
 function renderMassageNoPokemonsFound(searchInput) {
-    document.getElementById('#NoPokemonsFound').innerHTML = `Sorry, there are no Pokémon with "${searchInput}"!`;
+    document.getElementById('#NoPokemonsFound').innerHTML = `<p data-id="not-found">Sorry, there are no Pokémon with "${searchInput}"!</p>`;
 }
 
 function renderMessageMinLetters() {
-    document.getElementById('#NoPokemonsFound').innerHTML = `Please enter at least 3 letters for search.`;
+    document.getElementById('#NoPokemonsFound').innerHTML = `<p data-id="min-letters">Please enter at least 3 letters for search.</p>`;
 }
 
 function clearMessageMinLetters() {
