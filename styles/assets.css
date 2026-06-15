@@ -52,6 +52,10 @@ button {
     cursor: pointer;
 }
 
+.pokemon-card > button {
+    background-color: transparent;
+}
+
 .btn-reverse {
     border-radius: var(--border-radius-small-reverse);
 }
@@ -80,14 +84,14 @@ button:hover,
 button:focus-visible,
 .pokemon-card:hover,
 .pokemon-card:focus-visible,
-.pokemon-card > div > img:hover,
-.pokemon-card > div > img:focus-visible {
+.pokemon-card > button > img:hover,
+.pokemon-card > button > img:focus-visible {
     filter: drop-shadow(var(--shadow)); 
 }
 
 a:active,
 button:active,
 .pokemon-card:active,
-.pokemon-card > div > img:active {
+.pokemon-card > button > img:active {
     filter: drop-shadow(var(--shadow-big)); 
 }

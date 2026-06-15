@@ -2,7 +2,7 @@ function templatePokemonCard (pokeID, name) {
     return `
         <li data-id="card"
             class="pokemon-card">
-            <div data-id="card-image" id="#Image${pokeID}" onclick="showDialog(${pokeID})"></div>
+            <button data-id="card-image" id="#Image${pokeID}" onclick="showDialog(${pokeID})"></button>
             <h2 data-id="card-pokemon-name">${name}</h2>
             <div data-id="card-pokemon-types" id="#Types${pokeID}"></div>
         </li>`
@@ -106,11 +106,10 @@ function templatePokemonOverlay(pokeID, name, type1, type2, height, weight, hp, 
                     alt="next Pokémon">
                 </button>
             </div>
-            <div data-id="evolution-chain">
-                <ul id="#EvolutionChain${pokeID}"
-                    class="evolution-chain">
-                </ul>
-            </div>
+            <ul data-id="evolution-chain"
+                id="#EvolutionChain${pokeID}"
+                class="evolution-chain">
+            </ul>
         </section>`
 }
 

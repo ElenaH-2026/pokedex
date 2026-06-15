@@ -34,10 +34,6 @@ h4 {
     width: fit-content;
 }
 
-ul {
-    list-style-type: none;
-}
-
 .border-big {
     background-color: var(--color-dark);
     border: 1px solid var(--color-light);
@@ -122,11 +118,10 @@ main {
     width: 250px;
 }
 
-.pokemon-card > div > img {
+.pokemon-card > button > img {
     border-radius: var(--border-radius-small);
     padding: 16px;
     width: 100%;
-    cursor: pointer;
 }
 
 .span-type {
@@ -168,7 +163,7 @@ main {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 450px;
+    height: 40vh;
 }
 
 .pokemon-details-container-child-img {
@@ -179,6 +174,7 @@ main {
 .pokemon-details-container-child-img > img {
     object-fit: contain;
     max-width: 100%;
+    max-height: 100%;
 }
 
 .pokemon-details-container-child {
@@ -217,7 +213,7 @@ main {
     align-items: center;
     padding: 0 40px;
     gap: 80px;
-    height: 300px;
+    height: 20%;
 }
 
 .evolution-chain > li > img {
@@ -236,7 +232,6 @@ main {
 @media screen and (max-width: 1279px) {
     .evolution-chain {
         gap: 60px;
-        height: 280px;
     }
 
     .evolution-chain > li > img {
@@ -247,10 +242,6 @@ main {
 @media screen and (max-width: 768px) {
     header > div > label {
         display: none;
-    }
-
-    .pokemon-details-container-parent {
-        height: 400px;
     }
 
     .pokemon-details-container-child {
@@ -266,7 +257,6 @@ main {
         justify-self: center;
         justify-content: space-between;
         gap: 0;
-        height: 250px;
     }
 
     .evolution-chain > li > img {
@@ -322,7 +312,6 @@ main {
 
     .evolution-chain {
         padding: 0 20px;
-        height: auto;
     }
 
     .evolution-chain > li > img {
