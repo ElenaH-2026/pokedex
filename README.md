@@ -1,4 +1,4 @@
-# ![Pokébal](/assets/icons/pokeball-green.png) Elenas Pokédex
+# ![Pokébal](/assets/icons/pokeball-green-40px.png) Elenas Pokédex
 
 ![Screenshot des Pokédex](/assets/img/screenshot.jpg)
 
@@ -70,7 +70,7 @@ z.B. mit einem Live Server
 ```
 
 ## 👩‍💻 Entwicklerin
-![Avatar Elena](/assets/icons/elena-avatar.png)
+![Avatar Elena](/assets/icons/elena-avatar-80px.png)
 ### Elena Hiener
 - 📧 Email: [hiener.elena@web.de](mailto:hiener.elena@web.de)
 - 🔗 LinkedIn: [elena-hiener](https://de.linkedin.com/in/elena-hiener)
