@@ -1,4 +1,4 @@
-# ![Pokébal](.assets/icons/pokeball-green.svg) Elenas Pokédex
+# ![Pokébal](/assets/icons/pokeball-green.png) Elenas Pokédex
 
 ![Screenshot des Pokédex](/assets/img/screenshot.jpg)
 
