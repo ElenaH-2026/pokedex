@@ -79,8 +79,7 @@ async function renderPokemonCards(currentArray) {
 }
 
 async function renderOnePokemonCard(pokeID) {
-    const name = pokemonDataFetched[pokeID].name;
-    const types = pokemonDataFetched[pokeID].types;
+    const {name, types} = pokemonDataFetched[pokeID];
     const type1 = types[0];
     let type2 = (types.length == 2) ? types[1] : type1;
     const pokeImage = await pushPokemonImageToCache(pokeID, name, type1, type2);
@@ -221,16 +220,13 @@ function hideButtonPreviousNextPokemon() {
 }
 
 async function renderPokemonOverlay(pokeID) {
-    const name = pokemonDataFetched[pokeID].name;
-    const types = pokemonDataFetched[pokeID].types;
+    const {name, types, responsePokemon} = pokemonDataFetched[pokeID]
     const type1 = types[0];
     let type2 = (types.length == 2) ? types[1] : type1;
-    const height = (pokemonDataFetched[pokeID].responsePokemon.height / 10).toFixed(1).toString().replace(".", ",") + " m";
-    const weight = (pokemonDataFetched[pokeID].responsePokemon.weight / 10).toFixed(1).toString().replace(".", ",") + " kg";
-    const hp = pokemonDataFetched[pokeID].responsePokemon.stats[0].base_stat;
-    const attack = pokemonDataFetched[pokeID].responsePokemon.stats[1].base_stat;
-    const defense = pokemonDataFetched[pokeID].responsePokemon.stats[2].base_stat;
-    document.getElementById('#PokemonOverlay').innerHTML = await templatePokemonOverlay(pokeID, name, type1, type2, height, weight, hp, attack, defense);
+    const height = (responsePokemon.height / 10).toFixed(1).toString().replace(".", ",") + " m";
+    const weight = (responsePokemon.weight / 10).toFixed(1).toString().replace(".", ",") + " kg";
+    const [hp, attack, defense] = responsePokemon.stats;
+    document.getElementById('#PokemonOverlay').innerHTML = await templatePokemonOverlay(pokeID, name, type1, type2, height, weight, hp.base_stat, attack.base_stat, defense.base_stat);
     document.getElementById('#LoadingSpinnerOverlay').classList.add("loading-spinner");
     if (!dialogArray.includes(pokeID)) {
         await hideButtonPreviousNextPokemon();
