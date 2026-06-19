@@ -93,6 +93,8 @@ http://localhost:5501
 
 ### 🎯 Projektbeschreibung
 
+Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch aus der offiziellen PokéAPI abruft. Die Anwendung ermöglicht es Nutzern, durch die Pokémon-Liste zu scrollen, gezielt nach bestimmten Namen zu suchen und detaillierte Statuswerte in einer übersichtlichen Ansicht aufzurufen.
+
 ### 📁 Projektstruktur
 
 ```text
