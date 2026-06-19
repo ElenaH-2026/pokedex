@@ -1,6 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2";
 const MAX_AMOUNT = 1025;
-let loadingAmount = 20;
+let loadingAmount = 10;
 const pokemonDataFetched = {};
 const pokemonImageCache = {};
 const renderedPokemons = [];
