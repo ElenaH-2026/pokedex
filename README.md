@@ -2,27 +2,54 @@
 
 ![Screenshot des Pokédex](/assets/img/screenshot.jpg)
 
-## 🌐 Live-Ansicht meines Projekts
+<div align="center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo"  />
+        <img width="12" />
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40" alt="css3 logo" />
+        <img width="12" />
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="javascript logo"  />
+        <img width="12" />
+        <img src="https://pokeapi.co/static/pokeapi_256.3fa72200.png" height="40" alt="Pokémon logo" />
+</div>
+<img height="12" />
+<div align="center">
 
-➡️ [Elenas Pokédex](https://elenahiener.developerakademie.net/modul-8_2026-05_pokedex/index.html)
+![Lernprojekt](https://img.shields.io/badge/Lernprojekt-Frontend-17d8c2?style=for-the-badge)
+<img width="12" />
+![Projektstatus](https://img.shields.io/badge/Projektstatus-abgeschlossen-3fcc41?style=for-the-badge)
 
-![Lernprojekt - Frontend](https://shields.io)
-![UI - HTML5, CSS3+, JavaScript ES6+](https://shields.io)
-![API - PokeAPI](https://shields.io)
+</div>
+
+<div align="center">
+        
+🌐 Live-Ansicht meines Projekts: 👉 [Elenas Pokédex](https://elenahiener.developerakademie.net/modul-8_2026-05_pokedex/index.html)
+
+</div>
 
 ## Inhaltsverzeichnis
 
-- [⚙️ Voraussetzungen](#️-voraussetzungen)
-- [🚀 Quickstart](#-quickstart)
-- [🛠️ Usage](#️-usage)
-- [👩‍💻 Entwicklerin](#-entwicklerin)
-- [📝 Lizenz](#-lizenz)
+⚙️ [Voraussetzungen](#️-voraussetzungen)
+- 💻 [Laufzeitumgebung](#-laufzeitumgebung)
+- 🎨 [Frontend-Technologien (UI)](#-frontend-technologien-ui)
+- 💾 [Datenquelle / Schnittstelle](#-datenquelle--schnittstelle)
+
+🚀 [Quickstart](#-quickstart)
+
+🛠️ [Usage](#️-usage)
+- 🎯 [Projektbeschreibung](#-projektbeschreibung)
+- 🗂️ [Projektstruktur](#-projektstruktur)
+- 🌟 [Features](#-features)
+
+👩‍💻 [Entwicklerin](#-entwicklerin)
+
+📝 [Lizenz](#-lizenz)
+
 
 ## ⚙️ Voraussetzungen
 
 ### 💻 Laufzeitumgebung
 
-- Node.js
+*nicht erforderlich*
 
 ### 🎨 Frontend-Technologien (UI)
 
@@ -32,38 +59,43 @@
 | CSS3+ | Design und die visuelle Gestaltung |
 | JavaScript ES6+ | Dynamik und Interaktivität |
 
-### 💾 Datenquelle
-- [PokeAPI](https://pokeapi.co/)
+### 💾 Datenquelle / Schnittstelle
+
+👉  [PokéAPI](https://pokeapi.co/)
+
 
 ## 🚀 Quickstart
 
-1️⃣ Repository klonen:
+1. Repository klonen:
 
 ```bash
 git clone https://github.com/pokedex.git
 ```
 
-2️⃣ In das Verzeichnis wechseln:
+2. In das Verzeichnis wechseln:
 
 ```bash
 cd pokedex
 ```
 
-
-3️⃣ Starte deinen lokalen Entwicklungsserver:
+3. Starte deinen lokalen Entwicklungsserver:
 ```text
 z.B. Live Server in VS Code
 ```
 
-
-4️⃣ Öffne danach die URL im Browser:
+4. Öffne danach die URL im Browser:
 ```text
-http://<deine_ip>:5501
+http://localhost:5501
 ```
+
 
 ## 🛠️ Usage
 
-### 🗂️ Projektstruktur
+### 🎯 Projektbeschreibung
+
+Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch aus der offiziellen PokéAPI abruft. Die Anwendung ermöglicht es Nutzern, durch die Pokémon-Liste zu scrollen, gezielt nach bestimmten Namen zu suchen und detaillierte Statuswerte in einer übersichtlichen Ansicht aufzurufen.
+
+### 📁 Projektstruktur
 
 ```text
 .
@@ -89,15 +121,31 @@ http://<deine_ip>:5501
 
 ### 🌟 Features
 
-- 🔍 **Suchfunktion** nach Pokémon-namen ab drei Buchstaben
-- 🔔 **Benutzer-Feedback** bei erfolgloser Suche
+⚡ **Fetch-then-Render** (Daten werden erst geladen, dannach gerendert)
 
-## 👩‍💻 Entwicklerin
+💾 **Smart Caching** (keine redundante Netzwerk-Requests, bereits geladene Daten und Bilder werden zwischengespeichert)
+
+💡 **Lazy Loading** (Details werden erst bei Bedarf geladen)
+
+📱 **Vollständig Responsive** (320px bis 1440px+)
+
+🎨 **Typ-basiertes Farbdesign** (zweifarbig bei Pokémon mit 2 Typen)
+
+✨ **individuelle "Load More"-Anzahl** (Lade so viele oder wenige Pokemon wie du willst.)
+
+🔍 **Suchfunktion** (nach Pokémonnamen, ab drei Buchstaben)
+
+🔔 **Benutzer-Feedback** (bei erfolgloser Suche)
+
+
+## 💻 Entwicklerin
 
 ### ![Avatar Elena](/assets/icons/elena-avatar-80px.png) Elena Hiener
-- 📧 Email: [hiener.elena@web.de](mailto:hiener.elena@web.de)
-- 🔗 LinkedIn: [elena-hiener](https://de.linkedin.com/in/elena-hiener)
-- 🐙 GitHub: [ElenaH-2026](https://github.com/ElenaH-2026)
+📧 Email: [hiener.elena@web.de](mailto:hiener.elena@web.de)
+
+🔗 LinkedIn: [elena-hiener](https://de.linkedin.com/in/elena-hiener)
+
+🐙 GitHub: [ElenaH-2026](https://github.com/ElenaH-2026)
 
 
 ## 📝 Lizenz
