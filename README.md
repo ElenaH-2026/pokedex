@@ -2,22 +2,38 @@
 
 ![Screenshot des Pokédex](/assets/img/screenshot.jpg)
 
-Hier gehts zu meinem Projekt:
+## 🌐 Live-Ansicht meines Projekts
 
 ➡️ [Elenas Pokédex](https://elenahiener.developerakademie.net/modul-8_2026-05_pokedex/index.html)
 
+![Lernprojekt - Frontend](https://shields.io)
+![UI - HTML5, CSS3+, JavaScript ES6+](https://shields.io)
+![API - PokeAPI](https://shields.io)
 
 ## Inhaltsverzeichnis
 
-- ⚙️ Voraussetzungen
-- 🚀 Quickstart
-- 🛠️ Projektstruktur
-- 👩‍💻 Entwicklerin
-- 📝 Lizenz
+- [⚙️ Voraussetzungen](#️-voraussetzungen)
+- [🚀 Quickstart](#-quickstart)
+- [🛠️ Usage](#️-usage)
+- [👩‍💻 Entwicklerin](#-entwicklerin)
+- [📝 Lizenz](#-lizenz)
 
 ## ⚙️ Voraussetzungen
 
+### 💻 Laufzeitumgebung
 
+- Node.js
+
+### 🎨 Frontend-Technologien (UI)
+
+| Technologie | Aufgabe |
+| --- | --- |
+| HTML5 | Struktur der App |
+| CSS3+ | Design und die visuelle Gestaltung |
+| JavaScript ES6+ | Dynamik und Interaktivität |
+
+### 💾 Datenquelle
+- [PokeAPI](https://pokeapi.co/)
 
 ## 🚀 Quickstart
 
@@ -34,18 +50,20 @@ cd pokedex
 ```
 
 
-3️⃣ Starte dem lokalen Entwicklungsserver:
+3️⃣ Starte deinen lokalen Entwicklungsserver:
 ```text
-z.B. in VS Code
+z.B. Live Server in VS Code
 ```
 
 
 4️⃣ Öffne danach die URL im Browser:
 ```text
-z.B. mit einem Live Server
+http://<deine_ip>:5501
 ```
 
-## 🛠️ Projektstruktur
+## 🛠️ Usage
+
+### 🗂️ Projektstruktur
 
 ```text
 .
@@ -55,23 +73,28 @@ z.B. mit einem Live Server
 │   style.css
 │   .gitignore
 │   
-├───assets
-│   ├───fonts  
-│   ├───icons
-│   └───img
+├───assets/
+│   ├───fonts/
+│   ├───icons/
+│   └───img/
 │           
-├───scripts
+├───scripts/
 │       templates.js
 │       
-└───styles
+└───styles/
         assets.css
         fonts.css
         standard.css
 ```
 
+### 🌟 Features
+
+- 🔍 **Suchfunktion** nach Pokémon-namen ab drei Buchstaben
+- 🔔 **Benutzer-Feedback** bei erfolgloser Suche
+
 ## 👩‍💻 Entwicklerin
-![Avatar Elena](/assets/icons/elena-avatar-80px.png)
-### Elena Hiener
+
+### ![Avatar Elena](/assets/icons/elena-avatar-80px.png) Elena Hiener
 - 📧 Email: [hiener.elena@web.de](mailto:hiener.elena@web.de)
 - 🔗 LinkedIn: [elena-hiener](https://de.linkedin.com/in/elena-hiener)
 - 🐙 GitHub: [ElenaH-2026](https://github.com/ElenaH-2026)
