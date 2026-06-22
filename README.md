@@ -1,6 +1,12 @@
 # ![Pokébal](/assets/icons/pokeball-green-40px.png) Elenas Pokédex
 
-![Screenshot des Pokédex](/assets/img/screenshot.jpg)
+<div align="center">
+        
+![Lernprojekt](https://img.shields.io/badge/Lernprojekt-Frontend-00939b?style=for-the-badge)
+<img width="12" />
+![Projektstatus](https://img.shields.io/badge/Projektstatus-abgeschlossen-009600?style=for-the-badge)
+
+</div>
 
 <div align="center">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo"  />
@@ -11,14 +17,15 @@
         <img width="12" />
         <img src="https://pokeapi.co/static/pokeapi_256.3fa72200.png" height="40" alt="Pokémon logo" />
 </div>
-<img height="12" />
+<img/>
 <div align="center">
-
-![Lernprojekt](https://img.shields.io/badge/Lernprojekt-Frontend-17d8c2?style=for-the-badge)
-<img width="12" />
-![Projektstatus](https://img.shields.io/badge/Projektstatus-abgeschlossen-3fcc41?style=for-the-badge)
+        
+Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch aus der offiziellen PokéAPI abruft.<br>Die Anwendung ermöglicht es Nutzern, durch die Pokémon-Liste zu scrollen, gezielt nach bestimmten Namen zu suchen und detaillierte Statuswerte in einer übersichtlichen Ansicht aufzurufen.
 
 </div>
+        
+![Screenshot des Pokédex](/assets/img/screenshot.jpg)
+
 
 <div align="center">
         
@@ -26,7 +33,26 @@
 
 </div>
 
-## Inhaltsverzeichnis
+## 👩‍💻 Entwicklerin
+
+<div align="center">
+
+### ![Avatar Elena](/assets/icons/elena-avatar-80px.png) Elena Hiener
+
+</div>
+
+<div align="center">
+      
+📧 Email: [hiener.elena@web.de](mailto:hiener.elena@web.de)
+<img width="12" />
+🔗 LinkedIn: [elena-hiener](https://de.linkedin.com/in/elena-hiener)
+<img width="12" />
+🐙 GitHub: [ElenaH-2026](https://github.com/ElenaH-2026)
+
+</div>
+
+
+## 📑 Inhaltsverzeichnis
 
 ⚙️ [Voraussetzungen](#️-voraussetzungen)
 - 💻 [Laufzeitumgebung](#-laufzeitumgebung)
@@ -36,11 +62,8 @@
 🚀 [Quickstart](#-quickstart)
 
 🛠️ [Usage](#️-usage)
-- 🎯 [Projektbeschreibung](#-projektbeschreibung)
 - 🗂️ [Projektstruktur](#-projektstruktur)
 - 🌟 [Features](#-features)
-
-👩‍💻 [Entwicklerin](#-entwicklerin)
 
 📝 [Lizenz](#-lizenz)
 
@@ -49,9 +72,14 @@
 
 ### 💻 Laufzeitumgebung
 
-*nicht erforderlich*
+*für dieses Projekt nicht erforderlich*
 
 ### 🎨 Frontend-Technologien (UI)
+<div>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="30" alt="html5 logo"  />
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="30" alt="css3 logo" />
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="30" alt="javascript logo"  />
+</div>
 
 | Technologie | Aufgabe |
 | --- | --- |
@@ -61,7 +89,7 @@
 
 ### 💾 Datenquelle / Schnittstelle
 
-👉  [PokéAPI](https://pokeapi.co/)
+👉 [PokéAPI](https://pokeapi.co/) [<img src="https://pokeapi.co/static/pokeapi_256.3fa72200.png" height="20" alt="Pokémon logo" />](https://pokeapi.co/)
 
 
 ## 🚀 Quickstart
@@ -69,7 +97,7 @@
 1. Repository klonen:
 
 ```bash
-git clone https://github.com/pokedex.git
+git clone https://github.com/ElenaH-2026/pokedex.git
 ```
 
 2. In das Verzeichnis wechseln:
@@ -83,17 +111,18 @@ cd pokedex
 z.B. Live Server in VS Code
 ```
 
-4. Öffne danach die URL im Browser:
+4. Öffne danach die URL im Browser auf deinem Computer:
 ```text
-http://localhost:5501
+http://localhost:<live-server-port>
+```
+
+5. Oder öffne die URL im Browser auf deiner virtuellen Maschine:
+```text
+http://<deine_ip>:<live-server-port>
 ```
 
 
 ## 🛠️ Usage
-
-### 🎯 Projektbeschreibung
-
-Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch aus der offiziellen PokéAPI abruft. Die Anwendung ermöglicht es Nutzern, durch die Pokémon-Liste zu scrollen, gezielt nach bestimmten Namen zu suchen und detaillierte Statuswerte in einer übersichtlichen Ansicht aufzurufen.
 
 ### 📁 Projektstruktur
 
@@ -121,38 +150,23 @@ Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch
 
 ### 🌟 Features
 
-⚡ **Fetch-then-Render** (Daten werden erst geladen, dannach gerendert)
-
-💾 **Smart Caching** (keine redundante Netzwerk-Requests, bereits geladene Daten und Bilder werden zwischengespeichert)
-
-💡 **Lazy Loading** (Details werden erst bei Bedarf geladen)
-
-📱 **Vollständig Responsive** (320px bis 1440px+)
-
-🎨 **Typ-basiertes Farbdesign** (zweifarbig bei Pokémon mit 2 Typen)
-
-✨ **individuelle "Load More"-Anzahl** (Lade so viele oder wenige Pokemon wie du willst.)
-
-🔍 **Suchfunktion** (nach Pokémonnamen, ab drei Buchstaben)
-
-🔔 **Benutzer-Feedback** (bei erfolgloser Suche)
-
-
-## 💻 Entwicklerin
-
-### ![Avatar Elena](/assets/icons/elena-avatar-80px.png) Elena Hiener
-📧 Email: [hiener.elena@web.de](mailto:hiener.elena@web.de)
-
-🔗 LinkedIn: [elena-hiener](https://de.linkedin.com/in/elena-hiener)
-
-🐙 GitHub: [ElenaH-2026](https://github.com/ElenaH-2026)
+| Feature | Zusatzinformation |
+| --- | --- |
+| ⚡ Fetch-then-Render | *Daten werden erst geladen, dannach gerendert* |
+| 💾 Smart Caching | *keine redundante Netzwerk-Requests, bereits geladene Daten und Bilder werden zwischengespeichert* |
+| 💡 Lazy Loading | *Details werden erst bei Bedarf geladen* |
+| 📱 Vollständig Responsive | *320px bis 1440px+* |
+| 🎨 Typ-basiertes Farbdesign | *zweifarbig bei Pokémon mit 2 Typen* |
+| ✨ individuelle "Load More"-Anzahl | *Lade so viele oder wenige Pokemon wie du willst.* |
+| 🔍 Suchfunktion | *nach Pokémonnamen, ab drei Buchstaben* |
+| 🔔 Benutzer-Feedback | *bei erfolgloser Suche* |
 
 
 ## 📝 Lizenz
 
-Dieses Projekt ist ein reines Übungsprojekt und ist zu Lernzwecken im Zuge meiner Weiterbildung bei der [Developer Akadamy](https://developerakademie.com) entstanden.
+> [!NOTE] 
+> Dieses Projekt ist ein reines Übungsprojekt und ist zu Lernzwecken im Zuge meiner Weiterbildung bei der [Developer Akadamy](https://developerakademie.com) entstanden.
 Die Pokémon-Daten werden über die PokéAPI bezogen.
-Es steht in keiner Verbindung zu The Pokémon Company, Nintendo oder Game Freak.
-
-### Pokémon-Daten und Markenrechte
-Alle Pokémon-Namen, Bilder und Daten, die über die [PokéAPI](https://pokeapi.co) bezogen wurden, sind geistiges Eigentum von Nintendo, Creatures Inc. und GAME FREAK inc. 
+<br>Es steht in keiner Verbindung zu The Pokémon Company, Nintendo oder Game Freak.
+<br><br>**Pokémon-Daten und Markenrechte**
+<br>Alle Pokémon-Namen, Bilder und Daten, die über die [PokéAPI](https://pokeapi.co) bezogen wurden, sind geistiges Eigentum von Nintendo, Creatures Inc. und GAME FREAK inc. 
