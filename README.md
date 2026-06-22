@@ -158,7 +158,7 @@ http://<deine_ip>:<live-server-port>
 | 💡 Lazy Loading | *Details werden erst bei Bedarf geladen* |
 | 📱 Vollständig Responsive | *320px bis 1440px+* |
 | 🎨 Typ-basiertes Farbdesign | *zweifarbig bei Pokémon mit 2 Typen* |
-| ✨ individuelle "Load More"-Anzahl | *Lade so viele oder wenige Pokemon wie du willst.* |
+| ✨ individuelle "Load More"-Menge | *Lade so viele oder wenige Pokemon wie du willst.* |
 | 🔍 Suchfunktion | *nach Pokémonnamen, ab drei Buchstaben* |
 | 🔔 Benutzer-Feedback | *bei erfolgloser Suche* |
 
