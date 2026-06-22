@@ -29,7 +29,7 @@ Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch
 
 <div align="center">
         
-🌐 Live-Ansicht meines Projekts: 👉 [Elenas Pokédex](https://elenahiener.developerakademie.net/modul-8_2026-05_pokedex/index.html)
+🌐 Live-Ansicht meines Projekts: 👉 [Elenas Pokédex](https://github.com/ElenaH-2026/pokedex/deployments/github-pages)
 
 </div>
 
@@ -72,7 +72,7 @@ Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch
 
 ### 💻 Laufzeitumgebung
 
-*für dieses Projekt nicht erforderlich*
+*Für dieses Projekt ist keine spezielle Laufzeitumgebung erforderlich.*
 
 ### 🎨 Frontend-Technologien (UI)
 <div>
@@ -128,11 +128,12 @@ http://<deine_ip>:<live-server-port>
 
 ```text
 .
-│   index.html
+│   .gitignore
 │   README.md
+│   LICENSE.md
+│   index.html
 │   script.js
 │   style.css
-│   .gitignore
 │   
 ├───assets/
 │   ├───fonts/
@@ -166,7 +167,5 @@ http://<deine_ip>:<live-server-port>
 
 > [!NOTE] 
 > Dieses Projekt ist ein reines Übungsprojekt und ist zu Lernzwecken im Zuge meiner Weiterbildung bei der [Developer Akadamy](https://developerakademie.com) entstanden.
-Die Pokémon-Daten werden über die PokéAPI bezogen.
-<br>Es steht in keiner Verbindung zu The Pokémon Company, Nintendo oder Game Freak.
-<br><br>**Pokémon-Daten und Markenrechte**
-<br>Alle Pokémon-Namen, Bilder und Daten, die über die [PokéAPI](https://pokeapi.co) bezogen wurden, sind geistiges Eigentum von Nintendo, Creatures Inc. und GAME FREAK inc. 
+<br>Die Pokémon-Daten werden über die PokéAPI bezogen.
+<br><br>Details zur Lizenz und den Markenrechten findest du in der LICENSE.md.
