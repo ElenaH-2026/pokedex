@@ -1,4 +1,4 @@
-# Lizenz & Markenrechte
+# 📝 Lizenz & Markenrechte
 
 ## 1. Software-Lizenz (MIT-Lizenz für den Code)
 
