@@ -4,7 +4,7 @@
         
 ![Lernprojekt](https://img.shields.io/badge/Lernprojekt-Frontend-00939b?style=for-the-badge)
 <img width="12" />
-![Projektstatus](https://img.shields.io/badge/Projektstatus-abgeschlossen-009600?style=for-the-badge)
+![Projektstatus](https://img.shields.io/badge/Projektstatus-abgeschlossen_im_Jun_2026-009600?style=for-the-badge)
 
 </div>
 
@@ -29,7 +29,7 @@ Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch
 
 <div align="center">
         
-🌐 Live-Ansicht meines Projekts: 👉 [Elenas Pokédex](https://github.com/ElenaH-2026/pokedex/deployments/github-pages)
+🌐 Live-Ansicht meines Projekts: 👉 [Elenas Pokédex](https://elenah-2026.github.io/pokedex/)
 
 </div>
 
@@ -168,4 +168,6 @@ http://<deine_ip>:<live-server-port>
 > [!NOTE] 
 > Dieses Projekt ist ein reines Übungsprojekt und ist zu Lernzwecken im Zuge meiner Weiterbildung bei der [Developer Akadamy](https://developerakademie.com) entstanden.
 <br>Die Pokémon-Daten werden über die PokéAPI bezogen.
-<br><br>Details zur Lizenz und den Markenrechten findest du in der LICENSE.md.
+
+> [!IMPORTANT]
+> Details zur Lizenz und den Markenrechten findest du in der LICENSE.md.
