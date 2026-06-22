@@ -170,4 +170,4 @@ http://<deine_ip>:<live-server-port>
 <br>Die Pokémon-Daten werden über die PokéAPI bezogen.
 
 > [!IMPORTANT]
-> Details zur Lizenz und den Markenrechten findest du in der LICENSE.md.
+> Details zur Lizenz und den Markenrechten findest du in der [LICENSE.md](https://github.com/ElenaH-2026/pokedex?tab=License-1-ov-file).
