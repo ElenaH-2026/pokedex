@@ -16,7 +16,7 @@ DIE SOFTWARE WIRD OHNE JEDE AUSDRÜCKLICHE ODER IMPLIZIERTE GARANTIE BEREITGESTE
 
 ## 2. Wichtiger Hinweis zu Drittrechten (Disclaimer)
 
-Dieses Projekt ist ein reines Übungsprojekt und ist zu Lernzwecken im Zuge meiner Weiterbildung bei der Developer Akademie entstanden. Die Pokémon-Daten werden über die PokéAPI bezogen. Es steht in keiner Verbindung zu面 The Pokémon Company, Nintendo oder Game Freak.
+Dieses Projekt ist ein reines Übungsprojekt und ist zu Lernzwecken im Zuge meiner Weiterbildung bei der Developer Akademie entstanden. Die Pokémon-Daten werden über die PokéAPI bezogen. Es steht in keiner Verbindung zu The Pokémon Company, Nintendo oder Game Freak.
 
 ### Pokémon-Daten und Markenrechte
 Alle Pokémon-Namen, Bilder und Daten, die über die PokéAPI bezogen wurden, sind geistiges Eigentum von Nintendo, Creatures Inc. und GAME FREAK inc.
