@@ -2,13 +2,17 @@
 
 <div align="center">
         
+![Projektmanagement](https://img.shields.io/badge/Projektmanagement-Trelloboard_mit_Kanbanprozess-0055cc?style=for-the-badge)
+<img width="12" />           
 ![Lernprojekt](https://img.shields.io/badge/Lernprojekt-Frontend-00939b?style=for-the-badge)
 <img width="12" />
-![Projektstatus](https://img.shields.io/badge/Projektstatus-abgeschlossen_im_Jun_2026-009600?style=for-the-badge)
+![Projektstatus](https://img.shields.io/badge/Projektstatus-abgeschlossen_im_Juni_2026-009600?style=for-the-badge)
 
 </div>
 
 <div align="center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-original.svg" height="40" alt="trello logo" />
+        <img width="12" />    
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo"  />
         <img width="12" />
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40" alt="css3 logo" />
@@ -40,6 +44,13 @@ Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch
 ### ![Avatar Elena](/assets/icons/elena-avatar-80px.png) Elena Hiener
 
 </div>
+
+<div align="center">    
+        
+📊 Projektmanagement: Trello-Board mit Kanban-Prozess  
+        
+</div>
+
 
 <div align="center">
       
