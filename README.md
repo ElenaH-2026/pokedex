@@ -2,7 +2,7 @@
 
 <div align="center">
         
-![Projektmanagement](https://img.shields.io/badge/Projektmanagement-Trelloboard_mit_Kanbanprozess-0055cc?style=for-the-badge)
+![agiles Projektmanagement](https://img.shields.io/badge/agiles_Projektmanagement-Trelloboard_mit_Kanbanprozess-0055cc?style=for-the-badge)
 <img width="12" />           
 ![Lernprojekt](https://img.shields.io/badge/Lernprojekt-Frontend-00939b?style=for-the-badge)
 <img width="12" />
@@ -47,7 +47,7 @@ Diese Web-App ist ein interaktiver und responsiver Pokédex, der Daten dynamisch
 
 <div align="center">    
         
-📊 Projektmanagement: Trello-Board mit Kanban-Prozess  
+📊 agiles Projektmanagement: Trello-Board mit Kanban-Prozess  
         
 </div>
 
