@@ -1,4 +1,8 @@
-# ![Pokébal](/assets/icons/pokeball-green-40px.png) Elenas Pokédex
+<div align="center">
+        
+# ![Pokébal](/assets/icons/pokeball-green-40px.png) Elenas Pokédex ![Pokébal](/assets/icons/pokeball-green-40px.png)
+
+</div>
 
 <div align="center">
         
